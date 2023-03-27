@@ -3,7 +3,7 @@
   "description": "",
   "version": "0.0.0",
   "author": "",
-  "license": "",
+  "license": "MIT",
   "keywords": [],
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
     "type-check": "tsc",
     "lint": "eslint --ignore-path .gitignore \"{src,tests}/**/*.+(ts|js|tsx)\"",
     "lint:fix": "yarn lint --fix && prettier --write .",
-    "test": "vitest && exit 0",
+    "test": "vitest",
     "test:coverage": "vitest --coverage --run",
     "test:watch": "vitest --watch",
     "prepare": "husky install",
