@@ -9,11 +9,11 @@ describe('[Component] Example', () => {
 
     expect(screen.getByText('click 0')).toBeDefined();
   });
-  
+
   it('should call click on button and increment', () => {
     render(<Example />);
 
-    fireEvent.click(screen.getByText('click 0'))
+    fireEvent.click(screen.getByText('click 0'));
 
     expect(screen.getByText('click 1')).toBeDefined();
   });
