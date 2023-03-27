@@ -35,7 +35,6 @@ module.exports = {
     'no-plusplus': 'off',
     'no-unused-vars': 'off',
     'no-use-before-define': 'off',
-    'prettier/prettier': 'error',
     'react/destructuring-assignment': 'off',
     'react/function-component-definition': 'off',
     'react/jsx-filename-extension': 'off',
