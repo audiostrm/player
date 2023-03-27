@@ -7,6 +7,6 @@ export default {
   component: Example,
 } as ComponentMeta<typeof Example>;
 
-const Template: ComponentStory<typeof Example> = () => <Example />;
+const Template: ComponentStory<typeof Example> = () => <Example />
 
 export const Primary: ComponentStory<typeof Example> = Template.bind({});
