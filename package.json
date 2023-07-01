@@ -10,8 +10,8 @@
     "url": ""
   },
   "scripts": {
-    "dev": "concurrently \"yarn build --watch\" \"yarn storybook\" \"yarn test:watch\" ",
-    "build": "rm -rf ./src/index.css.map && tsup --onSuccess \"yarn yalc publish\"",
+    "dev": "tsup --watch",
+    "build": "rm -rf ./src/index.css.map && tsup",
     "type-check": "tsc",
     "lint": "eslint --ignore-path .gitignore \"{src,tests}/**/*.+(ts|js|tsx)\"",
     "lint:fix": "yarn lint --fix && prettier --write .",
@@ -34,7 +34,7 @@
     "./dist/index.css": {
       "import": "./dist/index.css",
       "require": "./dist/index.css"
-  }
+    }
   },
   "files": [
     "dist"
