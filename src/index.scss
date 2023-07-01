@@ -2,10 +2,13 @@
 $slate: #64748b;
 $dark-slate: #1e293b;
 $blue: #3b82f6;
-$love: #D8B3FE;
+$love: #d8b3fe;
 
 * {
-  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;}
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+}
 
 .audiostream-player {
   width: 100%;
@@ -13,5 +16,5 @@ $love: #D8B3FE;
   bottom: 0;
   height: 80px;
   border-top: 1px solid $dark-slate;
-  color: #FFF;
+  color: #fff;
 }

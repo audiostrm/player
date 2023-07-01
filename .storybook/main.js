@@ -1,15 +1,19 @@
 module.exports = {
   stories: ['../src/**/*.story.@(js|jsx|ts|tsx)'],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
+  ],
   framework: {
     name: '@storybook/react-webpack5',
-    options: {}
+    options: {},
   },
   typescript: {
     check: false,
-    reactDocgen: false
+    reactDocgen: false,
   },
   docs: {
-    autodocs: true
-  }
+    autodocs: true,
+  },
 };
