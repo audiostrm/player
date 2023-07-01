@@ -18,10 +18,10 @@ $love: #d8b3fe;
   border-top: 1px solid $dark-slate;
   color: #fff;
   right: 0;
-  @media screen and (min-width: 768px){
-      width: calc(100% - 80px);
-   }
-  @media screen and (max-width: 768px){
+  @media screen and (min-width: 768px) {
+    width: calc(100% - 80px);
+  }
+  @media screen and (max-width: 768px) {
     left: 0;
     height: 70px;
   }
