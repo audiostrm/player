@@ -1,7 +1,7 @@
 {
   "name": "@audiostreamhq/player",
   "description": "",
-  "version": "0.0.3-beta",
+  "version": "0.0.4-beta",
   "author": "",
   "license": "MIT",
   "keywords": [],
@@ -30,7 +30,11 @@
     ".": {
       "require": "./dist/index.js",
       "import": "./dist/index.mjs"
-    }
+    },
+    "./dist/index.css": {
+      "import": "./dist/index.css",
+      "require": "./dist/index.css"
+  }
   },
   "files": [
     "dist"
