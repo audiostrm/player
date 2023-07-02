@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { Player } from './player';
+import { Player } from '../player';
 
 export default {
   title: 'Player',

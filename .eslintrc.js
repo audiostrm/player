@@ -5,7 +5,6 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    'airbnb',
     'plugin:storybook/recommended',
     'prettier',
   ],
@@ -23,7 +22,6 @@ module.exports = {
     'typescript-sort-keys',
     'unused-imports',
     'prettier',
-    'prefer-arrow',
   ],
   rules: {
     '@typescript-eslint/no-unused-vars': 'error',
@@ -40,16 +38,7 @@ module.exports = {
     'react/jsx-filename-extension': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'off',
-    'typescript-sort-keys/interface': 'error',
     'typescript-sort-keys/string-enum': 'error',
     'unused-imports/no-unused-imports': 'error',
-    'prefer-arrow/prefer-arrow-functions': [
-      'error',
-      {
-        disallowPrototype: true,
-        singleReturnOnly: true,
-        classPropertiesAllowed: false,
-      },
-    ],
   },
 };

@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+$slate: #64748b;
+$dark-slate: #1e293b;
+$blue: #3b82f6;
+$love: #d8b3fe;
+
+* {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+}
+
+.audiostream-player {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  height: 80px;
+  border-top: 1px solid $dark-slate;
+  color: #fff;
+  right: 0;
+  &:hover {
+    .tracker-wrapper .tracker-indicator {
+        background: $blue;
+        &::before {
+          display: block;
+      }
+    }
+  }
+  @media screen and (min-width: 768px) {
+    width: calc(100% - 80px);
+  }
+  @media screen and (max-width: 768px) {
+    left: 0;
+    height: 70px;
+  }
+}
+
+.audiostream-player .tracker-wrapper {
+  width: 100%;
+  background: #64748b5f;
+  height: 2px;
+  .tracker-indicator {
+    background: #FFF;
+    height: 100%;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      right: 0;
+      top: 50%;
+      transform: translate(5px, -50%);
+      border-radius: 50%;
+      display: none;
+      background: #FFF;
+    }
+  }
+}
+
+
+.audiostream-player .desktop-canvas {
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 12px;
+  align-items: center;
+  .image-wrapper {
+    width: 50px;
+    border-radius: 4px;
+    height: 50px;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+  }
+  .controller {
+    width: 100%;
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    gap: 0 12px;
+    .controller-play-button {
+      width: 36px;
+      height: 36px;
+      background: #FFF;
+      outline: none;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .side-controller-button {
+      background: transparent;
+      outline: none;
+      border: none;
+    }
+  }
+  .volume-controls {
+    width: 140px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+    gap: 10px;
+    &:hover {
+      .volume-indicator {
+        background: $blue !important;
+        &::before {
+          display: block;
+      }
+      } 
+    }
+    .volume-tracker {
+      background: #64748b;
+      height: 4px;
+      width: 100%;
+      border-radius: 50px;
+      overflow: hidden;
+      .volume-indicator {
+        height: 100%;
+        border-radius: 50px;
+        background: #FFF;
+        position: relative;
+        &::before {
+          content: '';
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          right: 0;
+          top: 50%;
+          transform: translate(5px, -50%);
+          border-radius: 50%;
+          display: none;
+          background: #FFF;
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,11 @@
 import React from 'react';
-import './index.css';
+import './styles/index.css';
+import { Tracker } from './core/tracker';
+import { View } from './view';
 
 export const Player = () => (
-  <div className="audiostream-player">audio player</div>
+  <div className="audiostream-player">
+    <Tracker />
+    <View />
+  </div>
 );

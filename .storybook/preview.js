@@ -1,4 +1,4 @@
-import '../src/index.css';
+import { PlayerProvider } from '../src/provider';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -31,3 +31,7 @@ export const parameters = {
     ],
   },
 };
+
+export const decorators = [
+  (Story, options) => <PlayerProvider>{Story(options)}</PlayerProvider>,
+];

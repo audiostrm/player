@@ -1,1 +1,2 @@
-export * from './player';
+export { Player } from './player';
+export { PlayerProvider } from './provider';
