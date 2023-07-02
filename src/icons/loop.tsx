@@ -6,8 +6,8 @@ export const LoopIcon = ({ color, size }: IconType) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512 512"
-      width={size || 18}
-      height={size || 18}
+      width={size || 15}
+      height={size || 15}
       fill={color || '#FFF'}
     >
       <title>loop-icon</title>

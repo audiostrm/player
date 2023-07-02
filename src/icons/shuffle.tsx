@@ -8,10 +8,10 @@ export const ShuffleIcon = () => {
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
       y="0px"
-      stroke='#FFF'
-      fill='#FFF'
-      width="24px"
-      height="24px"
+      stroke="#FFF"
+      fill="#FFF"
+      width="20"
+      height="20"
       viewBox="0 0 32 32"
     >
       <title>shuffle-icon</title>

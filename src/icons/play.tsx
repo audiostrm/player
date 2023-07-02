@@ -8,7 +8,7 @@ export const PlayIcon = ({ color, size }: IconType) => {
       height={size || '20px'}
       viewBox="0 0 11 14"
       version="1.1"
-      style={{transform: "translateX(2px)"}}
+      style={{ transform: 'translateX(2px)' }}
       xmlns="http://www.w3.org/2000/svg"
     >
       <title>play-icon</title>

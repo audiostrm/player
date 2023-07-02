@@ -5,6 +5,9 @@ $blue: #3b82f6;
 $love: #d8b3fe;
 
 * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
     Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
@@ -20,9 +23,9 @@ $love: #d8b3fe;
   right: 0;
   &:hover {
     .tracker-wrapper .tracker-indicator {
-        background: $blue;
-        &::before {
-          display: block;
+      background: $blue;
+      &::before {
+        display: block;
       }
     }
   }
@@ -40,7 +43,7 @@ $love: #d8b3fe;
   background: #64748b5f;
   height: 2px;
   .tracker-indicator {
-    background: #FFF;
+    background: #fff;
     height: 100%;
     position: relative;
     &::before {
@@ -53,11 +56,10 @@ $love: #d8b3fe;
       transform: translate(5px, -50%);
       border-radius: 50%;
       display: none;
-      background: #FFF;
+      background: #fff;
     }
   }
 }
-
 
 .audiostream-player .desktop-canvas {
   height: 100%;
@@ -66,14 +68,37 @@ $love: #d8b3fe;
   justify-content: space-between;
   padding: 0 12px;
   align-items: center;
-  .image-wrapper {
-    width: 50px;
-    border-radius: 4px;
-    height: 50px;
-    overflow: hidden;
-    img {
-      width: 100%;
+  .audio-info {
+    display: flex;
+    align-items: center;
+    summary {
+      margin-left: 12px;
+      max-width: 180px;
+      .audio-title {
+        font-size: 14px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      .audio-artist {
+        font-size: 12px;
+        color: $slate;
+        margin-top: 2px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
     }
+    .image-wrapper {
+      width: 50px;
+      border-radius: 4px;
+      height: 50px;
+      overflow: hidden;
+      img {
+        width: 100%;
+      }
+    }
+
   }
   .controller {
     width: 100%;
@@ -84,11 +109,11 @@ $love: #d8b3fe;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    gap: 0 12px;
+    gap: 0 24px;
     .controller-play-button {
       width: 36px;
       height: 36px;
-      background: #FFF;
+      background: #fff;
       outline: none;
       border: none;
       border-radius: 50%;
@@ -114,8 +139,8 @@ $love: #d8b3fe;
         background: $blue !important;
         &::before {
           display: block;
+        }
       }
-      } 
     }
     .volume-tracker {
       background: #64748b;
@@ -126,7 +151,7 @@ $love: #d8b3fe;
       .volume-indicator {
         height: 100%;
         border-radius: 50px;
-        background: #FFF;
+        background: #fff;
         position: relative;
         &::before {
           content: '';
@@ -138,7 +163,7 @@ $love: #d8b3fe;
           transform: translate(5px, -50%);
           border-radius: 50%;
           display: none;
-          background: #FFF;
+          background: #fff;
         }
       }
     }

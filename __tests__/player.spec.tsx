@@ -15,4 +15,4 @@ describe('[Component] Player', () => {
 
     expect(screen.getByTitle('pause-icon')).toBeDefined();
   });
-})
+});

@@ -1,4 +1,4 @@
 export type IconType = {
-  size?: number | `${number}`,
-  color?: string
-}
+  size?: number | `${number}`;
+  color?: string;
+};
