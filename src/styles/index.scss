@@ -13,6 +13,16 @@ $love: #d8b3fe;
     Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
 }
 
+img,
+.audio-title,
+.audio-artist {
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
 .audiostream-player {
   width: 100%;
   position: fixed;
@@ -21,14 +31,6 @@ $love: #d8b3fe;
   border-top: 1px solid $dark-slate;
   color: #fff;
   right: 0;
-  &:hover {
-    .tracker-wrapper .tracker-indicator {
-      background: $blue;
-      &::before {
-        display: block;
-      }
-    }
-  }
   @media screen and (min-width: 768px) {
     width: calc(100% - 80px);
   }
@@ -38,10 +40,29 @@ $love: #d8b3fe;
   }
 }
 
+.tracker-layer:hover {
+  & + .tracker-wrapper {
+    .tracker-indicator {
+      background: $blue !important;
+      &::before {
+        display: block;
+      }
+    }
+  }
+}
+
+.tracker-layer {
+  position: absolute;
+  height: 16px;
+  width: 100%;
+  transform: translateY(-6px);
+  z-index: 10;
+}
+
 .audiostream-player .tracker-wrapper {
   width: 100%;
   background: #64748b5f;
-  height: 2px;
+  height: 3px;
   .tracker-indicator {
     background: #fff;
     height: 100%;
@@ -98,7 +119,6 @@ $love: #d8b3fe;
         width: 100%;
       }
     }
-
   }
   .controller {
     width: 100%;
@@ -123,8 +143,20 @@ $love: #d8b3fe;
     }
     .side-controller-button {
       background: transparent;
+      position: relative;
       outline: none;
       border: none;
+      .loop-dot {
+        background: $blue;
+        width: 3px;
+        left: 50%;
+        top: 7.5px;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        height: 3px;
+        border-radius: 50%;
+        flex: none;
+      }
     }
   }
   .volume-controls {
@@ -134,20 +166,20 @@ $love: #d8b3fe;
     align-items: center;
     z-index: 10;
     gap: 10px;
-    &:hover {
-      .volume-indicator {
-        background: $blue !important;
-        &::before {
-          display: block;
-        }
-      }
-    }
     .volume-tracker {
       background: #64748b;
       height: 4px;
       width: 100%;
       border-radius: 50px;
-      overflow: hidden;
+      position: relative;
+      &:hover {
+        .volume-indicator {
+          background: $blue !important;
+          &::before {
+            display: block !important;
+          }
+        }
+      }
       .volume-indicator {
         height: 100%;
         border-radius: 50px;
@@ -164,6 +196,7 @@ $love: #d8b3fe;
           border-radius: 50%;
           display: none;
           background: #fff;
+          z-index: 10px;
         }
       }
     }
