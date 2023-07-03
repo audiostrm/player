@@ -24,6 +24,10 @@ img,
   border-top: 1px solid #1e293b;
   color: #fff;
   right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 10px;
 }
 @media screen and (min-width: 768px) {
   .audiostream-player {
