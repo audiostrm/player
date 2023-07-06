@@ -3,7 +3,7 @@ import React from 'react';
 
 export const useAudio = () => {
   const { handlePlaying, playing, ctx, seekHandler, buffer } =
-    React.useContext(AudioContext);  
+    React.useContext(AudioContext);
 
   return {
     isPlaying: playing,
