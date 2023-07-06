@@ -1,16 +1,14 @@
 import { PauseIcon } from '@/icons/pause';
 import { PlayIcon } from '@/icons/play';
+import { useAudio } from '@/provider/hooks/useAudio';
 import React from 'react';
 
 export const PlayerButton = () => {
-  const [playing, setPlaying] = React.useState(false);
+  const { togglePlay, isPlaying } = useAudio();
 
   return (
-    <button
-      className="controller-play-button"
-      onClick={() => setPlaying((prev) => !prev)}
-    >
-      {!playing ? <PlayIcon /> : <PauseIcon />}
+    <button className="controller-play-button" onClick={() => togglePlay()}>
+      {!isPlaying ? <PlayIcon /> : <PauseIcon />}
     </button>
   );
 };

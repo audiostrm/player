@@ -2,11 +2,15 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Indicator } from './components/indicator';
 import { trackerGap } from './utils/tracker-gap';
 import { trackerWidth } from './utils/tracker-width';
+import { useAudio } from '@/provider/hooks/useAudio';
+import { useSeek } from './hooks/useSeek';
 
 export const Tracker = () => {
   const trackerRef = useRef<HTMLDivElement>(null);
   const isPressed = useRef<boolean>(false);
   const [tracker, setTracker] = useState<`${number}%`>('0%');
+  const { seekHandler, duration } = useAudio();
+  const { seek } = useSeek({ duration, tracker });
 
   const windowMouseDown = (e: MouseEvent) => {
     if (trackerRef.current && trackerRef.current.contains(e.target as Node)) {
@@ -20,7 +24,10 @@ export const Tracker = () => {
   };
 
   const windowMouseUp = () => {
-    isPressed.current = false;
+    if (isPressed.current) {
+      seekHandler(seek);
+      isPressed.current = false;
+    }
   };
 
   const windowMouseDrag = (e: MouseEvent) => {
