@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Indicator } from './components/indicator';
 import { trackerGap } from './utils/tracker-gap';
 import { trackerWidth } from './utils/tracker-width';
-import { useAudio } from '@/provider/hooks/useAudio';
+import { useAudio } from '@/provider/audio/hooks/useAudio';
 import { useSeek } from './hooks/useSeek';
 
 export const Tracker = () => {

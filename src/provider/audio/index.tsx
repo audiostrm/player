@@ -13,17 +13,28 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   useEffect(() => {
     axios
       .get('http://localhost:13000/stream', { responseType: 'arraybuffer' })
-      .then((data) => loadNewBuffer(data.data));
+      .then(({ data }) => loadNewBuffer(data));
   }, []);
+
+  const playerFinished = () => {
+    const timelapse = Date.now() - startTime.current;
+    const currentTime = timelapse / 1000 + playbackTime.current;
+
+    if (currentTime >= Number(buffer?.duration)) {
+      stop(true);
+      playbackTime.current = 0;
+      setPlaying(false);
+    }
+  };
 
   const initSource = () => {
     source.current = ctx.current?.createBufferSource();
     source.current!.buffer = buffer as AudioBuffer;
     source.current?.connect(ctx.current?.destination!);
+    source.current?.addEventListener('ended', playerFinished);
   };
 
   const play = () => {
-    console.log('play');
     if (playing) return;
 
     initSource();
@@ -34,26 +45,25 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
 
   const stop = (pause?: boolean) => {
     if (!playing) return;
+
+    const timelapse = Date.now() - startTime.current;
+    playbackTime.current = pause ? timelapse / 1000 + playbackTime.current : 0;
     setPlaying(false);
     source.current?.stop();
-    playbackTime.current = pause
-      ? (Date.now() - startTime.current) / 1000 + playbackTime.current
-      : 0;
   };
 
   const seek = (seekTime: number) => {
-    if (playbackTime.current > buffer?.duration!) {
-      console.log('[Player] playback time is greater than buffer duration');
-      return;
-    }
+    if (playbackTime.current > buffer?.duration!) return;
 
     if (playing) {
       source.current?.stop(0);
       initSource();
       playbackTime.current = seekTime;
+      startTime.current = Date.now();
       source.current?.start(0, seekTime);
     }
     playbackTime.current = seekTime;
+    startTime.current = Date.now();
   };
 
   const pause = () => {

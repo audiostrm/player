@@ -1,6 +1,6 @@
 import { PauseIcon } from '@/icons/pause';
 import { PlayIcon } from '@/icons/play';
-import { useAudio } from '@/provider/hooks/useAudio';
+import { useAudio } from '@/provider/audio/hooks/useAudio';
 import React from 'react';
 
 export const PlayerButton = () => {
