@@ -2,14 +2,23 @@ import { AudioContext } from '@/context/audio-context';
 import React from 'react';
 
 export const useAudio = () => {
-  const { handlePlaying, playing, ctx, seekHandler, buffer } =
-    React.useContext(AudioContext);
+  const {
+    handlePlaying,
+    playing,
+    currentTime,
+    seek,
+    buffer,
+    volumeChange,
+    loading,
+  } = React.useContext(AudioContext);
 
   return {
     isPlaying: playing,
     duration: buffer?.duration,
-    currentTime: ctx?.currentTime,
+    currentTime,
     togglePlay: handlePlaying,
-    seekHandler,
+    seek,
+    loading,
+    volumeChange,
   };
 };

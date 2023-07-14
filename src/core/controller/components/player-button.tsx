@@ -4,7 +4,11 @@ import { useAudio } from '@/provider/audio/hooks/useAudio';
 import React from 'react';
 
 export const PlayerButton = () => {
-  const { togglePlay, isPlaying } = useAudio();
+  const { togglePlay, isPlaying, loading } = useAudio();
+
+  if (loading) {
+    return <span className="loader" />;
+  }
 
   return (
     <button className="controller-play-button" onClick={() => togglePlay()}>
