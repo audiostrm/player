@@ -1,15 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { volumeWidth } from '../utils/volume-width';
+import { useAudio } from '@/provider/audio/hooks/useAudio';
 
 export const VolumeTracker = () => {
   const volumeRef = useRef<HTMLDivElement>(null);
   const isPressed = useRef<boolean>(false);
-  const [volume, setVolume] = useState<`${number}%`>('0%');
+  const { volumeChange } = useAudio();
+  const [volume, setVolume] = useState<`${number}%`>('80%');
 
   const mouseDown = (e: MouseEvent) => {
     if (volumeRef.current && volumeRef.current.contains(e.target as Node)) {
       const volume = volumeWidth(volumeRef, e.clientX);
       setVolume(volume);
+      volumeChange(volume);
       isPressed.current = true;
     }
   };
@@ -17,6 +20,7 @@ export const VolumeTracker = () => {
   const mouseMove = (e: MouseEvent) => {
     if (isPressed.current) {
       const volume = volumeWidth(volumeRef, e.clientX);
+      volumeChange(volume);
       setVolume(volume);
     }
   };

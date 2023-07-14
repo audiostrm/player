@@ -1,16 +1,25 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Indicator } from './components/indicator';
 import { trackerGap } from './utils/tracker-gap';
 import { trackerWidth } from './utils/tracker-width';
 import { useAudio } from '@/provider/audio/hooks/useAudio';
 import { useSeek } from './hooks/useSeek';
+import { currentTimeWidth } from './utils/current-time-width';
 
 export const Tracker = () => {
   const trackerRef = useRef<HTMLDivElement>(null);
-  const isPressed = useRef<boolean>(false);
+  const [pressed, setPressed] = useState(false);
   const [tracker, setTracker] = useState<`${number}%`>('0%');
-  const { seekHandler, duration } = useAudio();
+  const { seek: seeker, duration, currentTime } = useAudio();
   const { seek } = useSeek({ duration, tracker });
+
+  const trackerTime = useMemo(() => {
+    if (pressed) {
+      return tracker;
+    }
+
+    return currentTimeWidth({ currentTime, duration });
+  }, [currentTime, duration, pressed, tracker]);
 
   const windowMouseDown = (e: MouseEvent) => {
     if (trackerRef.current && trackerRef.current.contains(e.target as Node)) {
@@ -19,19 +28,19 @@ export const Tracker = () => {
         e.clientX - trackerGap(trackerRef)
       );
       setTracker(trackerWidthPx);
-      isPressed.current = true;
+      setPressed(true);
     }
   };
 
   const windowMouseUp = () => {
-    if (isPressed.current) {
-      seekHandler(seek);
-      isPressed.current = false;
+    if (pressed) {
+      seeker(seek);
+      setPressed(false);
     }
   };
 
   const windowMouseDrag = (e: MouseEvent) => {
-    if (isPressed.current) {
+    if (pressed) {
       const trackerWidthPx = trackerWidth(
         trackerRef,
         e.clientX - trackerGap(trackerRef)
@@ -57,7 +66,7 @@ export const Tracker = () => {
     <>
       <div className="tracker-layer" ref={trackerRef} aria-label={tracker} />
       <div className="tracker-wrapper">
-        <Indicator width={tracker} />
+        <Indicator width={trackerTime} />
       </div>
     </>
   );
