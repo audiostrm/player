@@ -7,8 +7,8 @@ export type AudioContextProps = {
   buffer?: AudioBuffer;
   seek: (seek: number) => void;
   volumeChange: (volume: `${number}%`) => void;
-  loading: boolean,
-  currentTime: number
+  loading: boolean;
+  currentTime: number;
 };
 
 export const AudioContext = React.createContext<AudioContextProps>({
@@ -17,5 +17,5 @@ export const AudioContext = React.createContext<AudioContextProps>({
   seek: () => {},
   volumeChange: () => {},
   loading: false,
-  currentTime: 0
+  currentTime: 0,
 });
