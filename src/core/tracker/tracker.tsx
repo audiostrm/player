@@ -10,11 +10,11 @@ export const Tracker = () => {
   const trackerRef = useRef<HTMLDivElement>(null);
   const [pressed, setPressed] = useState(false);
   const [tracker, setTracker] = useState<`${number}%`>('0%');
-  const { seek: seeker, duration, currentTime } = useAudio();
+  const { seek: seeker, duration, currentTime, setCurrentTime } = useAudio();
   const { seek } = useSeek({ duration, tracker });
 
   const trackerTime = useMemo(() => {
-    if (pressed) {
+    if (pressed) {      
       return tracker;
     }
 
@@ -34,6 +34,7 @@ export const Tracker = () => {
 
   const windowMouseUp = () => {
     if (pressed) {
+      setCurrentTime(seek);
       seeker(seek);
       setPressed(false);
     }

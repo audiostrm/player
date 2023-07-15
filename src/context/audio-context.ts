@@ -9,6 +9,7 @@ export type AudioContextProps = {
   volumeChange: (volume: `${number}%`) => void;
   loading: boolean;
   currentTime: number;
+  setCurrentTime: React.Dispatch<React.SetStateAction<number>>
 };
 
 export const AudioContext = React.createContext<AudioContextProps>({
@@ -18,4 +19,5 @@ export const AudioContext = React.createContext<AudioContextProps>({
   volumeChange: () => {},
   loading: false,
   currentTime: 0,
+  setCurrentTime: () => {}
 });

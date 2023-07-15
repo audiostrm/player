@@ -4,9 +4,10 @@ import React, { useEffect, useRef, useState } from 'react';
 export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   const source = useRef<AudioBufferSourceNode>();
   const ctx = useRef<AudioContext>();
-  const [playbackTime, setPlaybackTime] = useState<number>(0);
   const startTime = useRef<number>(0);
+  const volumeValue = useRef<number>(0.8);
   const gainNode = useRef<GainNode>();
+  const [playbackTime, setPlaybackTime] = useState<number>(0);
   const [playing, setPlaying] = useState<boolean>(false);
   const [buffer, setBuffer] = useState<AudioBuffer>();
   const [loading, setLoading] = useState(false);
@@ -15,7 +16,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   useEffect(() => {
     setLoading(true);
     fetch(
-      'https://fetch-stream-audio.anthum.com/10mbps/house-41000hz-trim.wav'
+      'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/7d13389e-b7dc-4699-88ec-8810187ec59a'
     ).then(async (response) => {
       loadNewBuffer(await response.arrayBuffer());
       setLoading(false);
@@ -24,6 +25,15 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
+      if (buffer) {
+        if (currentTime >= buffer?.duration) {
+          stop(true);
+          setPlaybackTime(0);
+          setPlaying(false);
+          clearInterval(interval);
+        }
+      }
+
       if (playing) {
         const captureStamp = Date.now();
         const currentStamp =
@@ -32,7 +42,6 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
         setCurrentTime(currentStamp);
       }
       if (!playing) {
-        setCurrentTime(playbackTime);
         clearInterval(interval);
       }
     }, 1000);
@@ -53,22 +62,13 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   const initSource = () => {
     source.current = ctx.current?.createBufferSource();
     source.current!.buffer = buffer as AudioBuffer;
-    source.current?.addEventListener('ended', playerFinished);
     gainNode.current = ctx.current?.createGain();
 
     source.current
       ?.connect(gainNode.current as GainNode)
       .connect(ctx.current?.destination as AudioDestinationNode);
-    gainNode.current!.gain.value = 0.8;
+    gainNode.current!.gain.value = volumeValue.current;
   };
-
-  function playerFinished() {
-    if (playing) {
-      stop(true);
-      setPlaybackTime(0);
-      setPlaying(false);
-    }
-  }
 
   const play = () => {
     if (playing || loading) return;
@@ -99,6 +99,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
       source.current?.stop(0);
       initSource();
       setPlaybackTime(seekTime);
+      setCurrentTime(seekTime);
       startTime.current = Date.now();
       source.current?.start(0, seekTime);
     }
@@ -122,7 +123,11 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
 
   const volumeChange = (volume: `${number}%`) => {
     const pureNumber = Number(volume.replace('%', ''));
-    gainNode.current!.gain.value = pureNumber / 100;
+    volumeValue.current = pureNumber / 100;
+
+    if (gainNode.current) {
+      gainNode.current!.gain.value = pureNumber / 100;
+    }
   };
 
   return (
@@ -136,6 +141,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
         volumeChange,
         loading,
         currentTime,
+        setCurrentTime,
       }}
     >
       {children}
