@@ -14,7 +14,7 @@ export const Tracker = () => {
   const { seek } = useSeek({ duration, tracker });
 
   const trackerTime = useMemo(() => {
-    if (pressed) {      
+    if (pressed) {
       return tracker;
     }
 

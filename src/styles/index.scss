@@ -143,6 +143,9 @@ img,
       display: flex;
       justify-content: center;
       align-items: center;
+      &:disabled {
+        background: #ffffff65;
+      }
     }
     .side-controller-button {
       background: transparent;

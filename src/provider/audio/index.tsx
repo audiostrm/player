@@ -1,4 +1,5 @@
-import { AudioContext as Context } from '@/context/audio-context';
+import { API_URL } from '@/api';
+import { AudioContext as Context, DataType } from '@/context/audio-context';
 import React, { useEffect, useRef, useState } from 'react';
 
 export const AudioProvider = ({ children }: React.PropsWithChildren) => {
@@ -12,16 +13,25 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   const [buffer, setBuffer] = useState<AudioBuffer>();
   const [loading, setLoading] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
+  const [data, setData] = useState<DataType>({});
+
+  const remoteLoadAudio = (newTrack: DataType) => {
+    stop();
+    setLoading(true);
+    setPlaying(false);
+    setData(newTrack);
+    setCurrentTime(0);
+    fetch(API_URL + newTrack.audioId)
+      .then((response) => response.arrayBuffer())
+      .then((arrayBuffer) => {
+        loadNewBuffer(arrayBuffer);
+        setLoading(false);
+      });
+  };
 
   useEffect(() => {
-    setLoading(true);
-    fetch(
-      'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/7d13389e-b7dc-4699-88ec-8810187ec59a'
-    ).then(async (response) => {
-      loadNewBuffer(await response.arrayBuffer());
-      setLoading(false);
-    });
-  }, []);
+    if (buffer) play();
+  }, [buffer]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -44,7 +54,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
       if (!playing) {
         clearInterval(interval);
       }
-    }, 1000);
+    }, 500);
 
     return () => clearInterval(interval);
   }, [currentTime, playbackTime, playing]);
@@ -142,6 +152,8 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
         loading,
         currentTime,
         setCurrentTime,
+        setData: remoteLoadAudio,
+        track: data,
       }}
     >
       {children}
