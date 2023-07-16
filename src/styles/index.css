@@ -1,9 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
 }
 
 img,
@@ -72,7 +74,7 @@ img,
   position: relative;
 }
 .audiostream-player .tracker-wrapper .tracker-indicator::before {
-  content: "";
+  content: '';
   position: absolute;
   width: 8px;
   height: 8px;
@@ -84,7 +86,8 @@ img,
   background: #fff;
 }
 
-.audiostream-player .desktop-canvas, .mobile-canvas {
+.audiostream-player .desktop-canvas,
+.mobile-canvas {
   height: 100%;
   position: relative;
   display: flex;
@@ -92,22 +95,26 @@ img,
   padding: 0 12px;
   align-items: center;
 }
-.audiostream-player .desktop-canvas .audio-info, .mobile-canvas .audio-info {
+.audiostream-player .desktop-canvas .audio-info,
+.mobile-canvas .audio-info {
   display: flex;
   align-items: center;
 }
-.audiostream-player .desktop-canvas .audio-info summary, .mobile-canvas .audio-info summary {
+.audiostream-player .desktop-canvas .audio-info summary,
+.mobile-canvas .audio-info summary {
   margin-left: 12px;
   max-width: 180px;
   width: 100%;
 }
-.audiostream-player .desktop-canvas .audio-info summary .audio-title, .mobile-canvas .audio-info summary .audio-title {
+.audiostream-player .desktop-canvas .audio-info summary .audio-title,
+.mobile-canvas .audio-info summary .audio-title {
   font-size: 14px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
-.audiostream-player .desktop-canvas .audio-info summary .audio-artist, .mobile-canvas .audio-info summary .audio-artist {
+.audiostream-player .desktop-canvas .audio-info summary .audio-artist,
+.mobile-canvas .audio-info summary .audio-artist {
   font-size: 12px;
   color: #64748b;
   margin-top: 2px;
@@ -115,17 +122,20 @@ img,
   white-space: nowrap;
   overflow: hidden;
 }
-.audiostream-player .desktop-canvas .audio-info .image-wrapper, .mobile-canvas .audio-info .image-wrapper {
+.audiostream-player .desktop-canvas .audio-info .image-wrapper,
+.mobile-canvas .audio-info .image-wrapper {
   width: 50px !important;
   border-radius: 4px;
   flex: none;
   height: 50px;
   overflow: hidden;
 }
-.audiostream-player .desktop-canvas .audio-info .image-wrapper img, .mobile-canvas .audio-info .image-wrapper img {
+.audiostream-player .desktop-canvas .audio-info .image-wrapper img,
+.mobile-canvas .audio-info .image-wrapper img {
   width: 100%;
 }
-.audiostream-player .desktop-canvas .volume-controls, .mobile-canvas .volume-controls {
+.audiostream-player .desktop-canvas .volume-controls,
+.mobile-canvas .volume-controls {
   width: 140px;
   height: 100%;
   display: flex;
@@ -133,27 +143,51 @@ img,
   z-index: 10;
   gap: 10px;
 }
-.audiostream-player .desktop-canvas .volume-controls .volume-tracker, .mobile-canvas .volume-controls .volume-tracker {
+.audiostream-player .desktop-canvas .volume-controls .volume-tracker,
+.mobile-canvas .volume-controls .volume-tracker {
   background: #64748b;
   height: 4px;
   width: 100%;
   border-radius: 50px;
   position: relative;
 }
-.audiostream-player .desktop-canvas .volume-controls .volume-tracker:hover .volume-indicator, .mobile-canvas .volume-controls .volume-tracker:hover .volume-indicator {
+.audiostream-player
+  .desktop-canvas
+  .volume-controls
+  .volume-tracker:hover
+  .volume-indicator,
+.mobile-canvas .volume-controls .volume-tracker:hover .volume-indicator {
   background: #3b82f6 !important;
 }
-.audiostream-player .desktop-canvas .volume-controls .volume-tracker:hover .volume-indicator::before, .mobile-canvas .volume-controls .volume-tracker:hover .volume-indicator::before {
+.audiostream-player
+  .desktop-canvas
+  .volume-controls
+  .volume-tracker:hover
+  .volume-indicator::before,
+.mobile-canvas
+  .volume-controls
+  .volume-tracker:hover
+  .volume-indicator::before {
   display: block !important;
 }
-.audiostream-player .desktop-canvas .volume-controls .volume-tracker .volume-indicator, .mobile-canvas .volume-controls .volume-tracker .volume-indicator {
+.audiostream-player
+  .desktop-canvas
+  .volume-controls
+  .volume-tracker
+  .volume-indicator,
+.mobile-canvas .volume-controls .volume-tracker .volume-indicator {
   height: 100%;
   border-radius: 50px;
   background: #fff;
   position: relative;
 }
-.audiostream-player .desktop-canvas .volume-controls .volume-tracker .volume-indicator::before, .mobile-canvas .volume-controls .volume-tracker .volume-indicator::before {
-  content: "";
+.audiostream-player
+  .desktop-canvas
+  .volume-controls
+  .volume-tracker
+  .volume-indicator::before,
+.mobile-canvas .volume-controls .volume-tracker .volume-indicator::before {
+  content: '';
   position: absolute;
   width: 8px;
   height: 8px;
@@ -217,13 +251,17 @@ img,
   border-radius: 50%;
   display: inline-block;
   position: relative;
-  background: linear-gradient(0deg, rgba(59, 131, 246, 0.3568627451) 33%, #3b82f6 100%);
+  background: linear-gradient(
+    0deg,
+    rgba(59, 131, 246, 0.3568627451) 33%,
+    #3b82f6 100%
+  );
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
 }
 
 .loader::after {
-  content: "";
+  content: '';
   box-sizing: border-box;
   position: absolute;
   left: 50%;
@@ -242,4 +280,4 @@ img,
   100% {
     transform: rotate(360deg);
   }
-}/*# sourceMappingURL=index.css.map */
+} /*# sourceMappingURL=index.css.map */

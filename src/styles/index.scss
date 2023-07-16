@@ -91,7 +91,8 @@ img,
   }
 }
 
-.audiostream-player .desktop-canvas, .mobile-canvas {
+.audiostream-player .desktop-canvas,
+.mobile-canvas {
   height: 100%;
   position: relative;
   display: flex;
@@ -129,7 +130,6 @@ img,
       img {
         width: 100%;
       }
-      
     }
   }
   .volume-controls {
@@ -176,7 +176,6 @@ img,
   }
 }
 
-
 .controller {
   width: 100%;
   display: flex;
@@ -208,7 +207,7 @@ img,
 
 .controller-play-button {
   width: 36px;
-  height: 36px; 
+  height: 36px;
   flex: none;
   background: #fff;
   outline: none;
