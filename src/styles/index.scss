@@ -42,7 +42,7 @@ img,
     left: 0;
     height: 70px;
   }
-  &.hidden {
+  &.hidden-player {
     @media screen and (max-width: 768px) {
       transform: translateY(80px);
     }

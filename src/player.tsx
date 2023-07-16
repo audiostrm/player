@@ -10,7 +10,7 @@ export const Player = () => {
   return (
     <div
       className={
-        track.audioId ? 'audiostream-player' : 'audiostream-player hidden'
+        track.audioId ? 'audiostream-player' : 'audiostream-player hidden-player'
       }
     >
       <Tracker />
