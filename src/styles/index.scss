@@ -32,6 +32,7 @@ img,
   color: #fff;
   right: 0;
   background: rgba(0, 0, 0, 0.8);
+  transition: 0.3s ease;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   @media screen and (min-width: 768px) {
@@ -40,6 +41,11 @@ img,
   @media screen and (max-width: 768px) {
     left: 0;
     height: 70px;
+  }
+  &.hidden {
+    @media screen and (max-width: 768px) {
+      transform: translateY(80px);
+    }
   }
 }
 
@@ -85,7 +91,7 @@ img,
   }
 }
 
-.audiostream-player .desktop-canvas {
+.audiostream-player .desktop-canvas, .mobile-canvas {
   height: 100%;
   position: relative;
   display: flex;
@@ -98,6 +104,7 @@ img,
     summary {
       margin-left: 12px;
       max-width: 180px;
+      width: 100%;
       .audio-title {
         font-size: 14px;
         text-overflow: ellipsis;
@@ -114,55 +121,15 @@ img,
       }
     }
     .image-wrapper {
-      width: 50px;
+      width: 50px !important;
       border-radius: 4px;
+      flex: none;
       height: 50px;
       overflow: hidden;
       img {
         width: 100%;
       }
-    }
-  }
-  .controller {
-    width: 100%;
-    display: flex;
-    position: absolute;
-    justify-content: center;
-    align-items: center;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    gap: 0 24px;
-    .controller-play-button {
-      width: 36px;
-      height: 36px;
-      background: #fff;
-      outline: none;
-      border: none;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      &:disabled {
-        background: #ffffff65;
-      }
-    }
-    .side-controller-button {
-      background: transparent;
-      position: relative;
-      outline: none;
-      border: none;
-      .loop-dot {
-        background: $blue;
-        width: 3px;
-        left: 50%;
-        top: 7.5px;
-        transform: translate(-50%, -50%);
-        position: absolute;
-        height: 3px;
-        border-radius: 50%;
-        flex: none;
-      }
+      
     }
   }
   .volume-controls {
@@ -206,6 +173,52 @@ img,
         }
       }
     }
+  }
+}
+
+
+.controller {
+  width: 100%;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  gap: 0 24px;
+  .side-controller-button {
+    background: transparent;
+    position: relative;
+    outline: none;
+    border: none;
+    .loop-dot {
+      background: $blue;
+      width: 3px;
+      left: 50%;
+      top: 7.5px;
+      transform: translate(-50%, -50%);
+      position: absolute;
+      height: 3px;
+      border-radius: 50%;
+      flex: none;
+    }
+  }
+}
+
+.controller-play-button {
+  width: 36px;
+  height: 36px; 
+  flex: none;
+  background: #fff;
+  outline: none;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:disabled {
+    background: #ffffff65;
   }
 }
 
