@@ -17,7 +17,8 @@ const Tracks: StoryFn<typeof Player> = () => {
       audioId: 'clj9cqopz0001kz088arksp9s',
       artist: 'AdamMusic',
       title: 'LADY GAGA, BEYONCÉ - G.U.Y. x HEATED (MASHUP)',
-      image: 'https://cdn.discordapp.com/attachments/1072505285580697712/1121805560585654282/image.png',
+      image:
+        'https://cdn.discordapp.com/attachments/1072505285580697712/1121805560585654282/image.png',
       playlistId: null,
     },
     {
