@@ -1,14 +1,12 @@
-import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { Player } from '../player';
-import { PlayerProvider, usePlayer } from '..';
+import { Player } from '../../player';
+import { PlayerProvider, usePlayer } from '../..';
+import React from 'react';
 
 export default {
   title: 'Player',
   component: Player,
 } as Meta<typeof Player>;
-
-const Template: StoryFn<typeof Player> = () => <Player />;
 
 const Tracks: StoryFn<typeof Player> = () => {
   const { setData } = usePlayer();
@@ -49,5 +47,5 @@ const Wrapper = () => {
     </PlayerProvider>
   );
 };
-export const Primary: StoryFn<typeof Player> = Template.bind({});
+
 export const TrackPlay: StoryFn<typeof Player> = Wrapper.bind({});
