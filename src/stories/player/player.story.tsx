@@ -9,5 +9,4 @@ export default {
 
 const Template: StoryFn<typeof Player> = () => <Player />;
 
-
 export const Primary: StoryFn<typeof Player> = Template.bind({});

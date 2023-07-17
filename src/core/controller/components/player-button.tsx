@@ -15,7 +15,7 @@ export const PlayerButton = () => {
   return (
     <button
       className="controller-play-button"
-      disabled={!track.audioId}
+      disabled={!track.id}
       onClick={() => togglePlay()}
     >
       {!isPlaying ? <PlayIcon /> : <PauseIcon />}

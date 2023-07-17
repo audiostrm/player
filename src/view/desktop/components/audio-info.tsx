@@ -7,7 +7,7 @@ export const Image = () => {
   return (
     <div className="audio-info">
       <div className="image-wrapper">
-        <img src={track.image} draggable={false} />
+        <img src={track.image as string} draggable={false} />
       </div>
       <summary>
         <p className="audio-title">{track.title}</p>
