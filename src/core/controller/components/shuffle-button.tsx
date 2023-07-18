@@ -4,7 +4,7 @@ import { shuffleStatusColor } from '../utils/shuffle-status-color';
 import { PlaylistContext } from '@/context/playlist-context';
 
 export const ShuffleButton = () => {
-  const {isShuffle, toggleShuffle} = useContext(PlaylistContext)
+  const { isShuffle, toggleShuffle } = useContext(PlaylistContext);
 
   const shuffleIconColor = useMemo(
     () => shuffleStatusColor(isShuffle),
@@ -12,10 +12,7 @@ export const ShuffleButton = () => {
   );
 
   return (
-    <button
-      className="side-controller-button"
-      onClick={toggleShuffle}
-    >
+    <button className="side-controller-button" onClick={toggleShuffle}>
       <ShuffleIcon color={shuffleIconColor} />
     </button>
   );

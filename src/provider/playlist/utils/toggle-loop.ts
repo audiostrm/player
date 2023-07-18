@@ -1,6 +1,8 @@
 import { LoopStatusType } from '../playlist-provider';
 
-export const toggleLoopStatus = (currentStatus: LoopStatusType): LoopStatusType => {
+export const toggleLoopStatus = (
+  currentStatus: LoopStatusType
+): LoopStatusType => {
   if (currentStatus === 'none') {
     return 'all';
   }

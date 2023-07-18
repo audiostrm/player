@@ -1,7 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import {
-  loopStatusColor,
-} from '@/core/controller/utils/loop-status';
+import { loopStatusColor } from '@/core/controller/utils/loop-status';
 import { toggleLoopStatus } from '@/provider/playlist/utils/toggle-loop';
 
 describe('[Util] toggleLoopStatus', () => {
