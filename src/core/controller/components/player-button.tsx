@@ -6,7 +6,7 @@ import React from 'react';
 
 export const PlayerButton = () => {
   const { togglePlay, isPlaying, loading } = useAudio();
-  const { track } = usePlayer();
+  const { audio } = usePlayer();
 
   if (loading) {
     return <span className="loader" />;
@@ -15,7 +15,7 @@ export const PlayerButton = () => {
   return (
     <button
       className="controller-play-button"
-      disabled={!track.id}
+      disabled={!audio.id}
       onClick={() => togglePlay()}
     >
       {!isPlaying ? <PlayIcon /> : <PauseIcon />}

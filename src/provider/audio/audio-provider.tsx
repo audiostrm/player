@@ -1,7 +1,6 @@
 import { API_URL } from '@/api';
-import { AudioContext as Context, DataType } from '@/context/audio-context';
+import { AudioContext as Context, AudioType } from '@/context/audio-context';
 import React, { useEffect, useRef, useState } from 'react';
-import { useAudioList } from './hooks/useAudioList';
 
 export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   const source = useRef<AudioBufferSourceNode>();
@@ -14,10 +13,19 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   const [buffer, setBuffer] = useState<AudioBuffer>();
   const [loading, setLoading] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const { setAudiosList } = useAudioList();
-  const [data, setData] = useState<DataType>({});
+  const [data, setData] = useState<AudioType>({});
 
-  const remoteLoadAudio = (newTrack: DataType) => {
+  const remoteLoadAudio = (newTrack: AudioType) => {
+    if (newTrack.id === data.id && playing) {
+      pause();
+      return;
+    }
+
+    if (newTrack.id === data.id && !playing) {
+      play();
+      return;
+    }
+
     stop();
     setLoading(true);
     setPlaying(false);
@@ -154,9 +162,8 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
         loading,
         currentTime,
         setCurrentTime,
-        setData: remoteLoadAudio,
-        track: data,
-        setAudiosList,
+        setAudio: remoteLoadAudio,
+        audio: data,
       }}
     >
       {children}

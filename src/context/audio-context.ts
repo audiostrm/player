@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type DataType = {
+export type AudioType = {
   id?: string;
   image?: string | null;
   title?: string;
@@ -17,9 +17,8 @@ export type AudioContextProps = {
   loading: boolean;
   currentTime: number;
   setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
-  setData: (data: DataType) => void;
-  track: DataType;
-  setAudiosList: (audios: DataType[]) => void;
+  setAudio: (data: AudioType) => void;
+  audio: AudioType;
 };
 
 export const AudioContext = React.createContext<AudioContextProps>({
@@ -30,7 +29,6 @@ export const AudioContext = React.createContext<AudioContextProps>({
   loading: false,
   currentTime: 0,
   setCurrentTime: () => {},
-  setData: () => {},
-  track: {},
-  setAudiosList: () => {},
+  setAudio: () => {},
+  audio: {},
 });

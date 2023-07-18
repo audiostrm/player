@@ -1,18 +1,18 @@
 import { describe, expect, it } from 'vitest';
 import {
   loopStatusColor,
-  loopStatusSwitcher,
 } from '@/core/controller/utils/loop-status';
+import { toggleLoopStatus } from '@/provider/playlist/utils/toggle-loop';
 
-describe('[Util] loopStatusSwitcher', () => {
+describe('[Util] toggleLoopStatus', () => {
   it('should return single if current is all', () => {
-    expect(loopStatusSwitcher('all')).toBe('single');
+    expect(toggleLoopStatus('all')).toBe('single');
   });
   it('should return none if current is single', () => {
-    expect(loopStatusSwitcher('single')).toBe('none');
+    expect(toggleLoopStatus('single')).toBe('none');
   });
   it('should return all if current is none', () => {
-    expect(loopStatusSwitcher('none')).toBe('all');
+    expect(toggleLoopStatus('none')).toBe('all');
   });
 });
 

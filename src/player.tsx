@@ -5,12 +5,12 @@ import { View } from './view';
 import { AudioContext } from './context/audio-context';
 
 export const Player = () => {
-  const { track } = useContext(AudioContext);
+  const { audio } = useContext(AudioContext);
 
   return (
     <div
       className={
-        track.id ? 'audiostream-player' : 'audiostream-player hidden-player'
+        audio.id ? 'audiostream-player' : 'audiostream-player hidden-player'
       }
     >
       <Tracker />

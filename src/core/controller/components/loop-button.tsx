@@ -1,11 +1,12 @@
 import { LoopIcon } from '@/icons/loop';
-import React, { useMemo } from 'react';
-import { loopStatusSwitcher, loopStatusColor } from '../utils/loop-status';
+import React, { useContext, useMemo } from 'react';
+import { loopStatusColor } from '../utils/loop-status';
+import { PlaylistContext } from '@/context/playlist-context';
 
 export type LoopStatusType = 'none' | 'single' | 'all';
 
 export const LoopButton = () => {
-  const [loopStatus, setLoopStatus] = React.useState<LoopStatusType>('none');
+  const { loopStatus, toggleLoop } = useContext(PlaylistContext);
 
   const loopIconColor: string = useMemo(
     () => loopStatusColor(loopStatus),
@@ -13,10 +14,7 @@ export const LoopButton = () => {
   );
 
   return (
-    <button
-      className="side-controller-button"
-      onClick={() => setLoopStatus(loopStatusSwitcher(loopStatus))}
-    >
+    <button className="side-controller-button" onClick={toggleLoop}>
       {loopStatus === 'single' && <div className="loop-dot" />}
       <LoopIcon color={loopIconColor} />
     </button>
