@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ForwardIcon } from '@/icons/forward';
+import { PlaylistContext } from '@/context/playlist-context';
 
 export const ForwardButton = () => {
+  const { forwardAudio } = useContext(PlaylistContext);
+
   return (
-    <button className="side-controller-button">
+    <div className="side-controller-button" onClick={forwardAudio}>
       <ForwardIcon />
-    </button>
+    </div>
   );
 };

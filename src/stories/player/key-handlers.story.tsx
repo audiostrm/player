@@ -14,10 +14,11 @@ const Template: StoryFn<typeof Player> = () => {
 
   React.useEffect(() => {
     setAudio({
-      image: 'https://media.pitchfork.com/photos/6447ec0b3749aeb5b27f047c/1:1/w_600/Kesha-Gag-Order.jpg',
+      image:
+        'https://media.pitchfork.com/photos/6447ec0b3749aeb5b27f047c/1:1/w_600/Kesha-Gag-Order.jpg',
       artist: 'Kesha',
-      title: "Only Love Can Save Us Now",
-      id: "clk9wgf070007mc0k7rv23xok"
+      title: 'Only Love Can Save Us Now',
+      id: 'clk9wgf070007mc0k7rv23xok',
     });
   }, []);
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { usePlayer } from '@/hooks/usePlayer';
 import { PauseIcon } from '@/icons/pause';
 import { PlayIcon } from '@/icons/play';

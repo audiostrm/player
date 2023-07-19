@@ -9,7 +9,7 @@ export default {
   component: Player,
 } as Meta<typeof Player>;
 
-const Tracks: StoryFn<typeof Player> = () => {
+const Tracks = () => {
   const { setAudio } = usePlayer();
   const tracks: AudioType[] = [
     {

@@ -1,10 +1,13 @@
+import { PlaylistContext } from '@/context/playlist-context';
 import { BackIcon } from '@/icons/back';
-import React from 'react';
+import React, { useContext } from 'react';
 
 export const BackButton = () => {
+  const { backAudio } = useContext(PlaylistContext);
+
   return (
-    <button className="side-controller-button">
+    <div className="side-controller-button" onClick={backAudio}>
       <BackIcon />
-    </button>
+    </div>
   );
 };

@@ -7,21 +7,43 @@ import { toggleLoopStatus } from './utils/toggle-loop';
 export type LoopStatusType = 'none' | 'single' | 'all';
 
 export const PlaylistProvider = ({ children }: React.PropsWithChildren) => {
-  const { audio } = useContext(AudioContext);
+  const { audio: track, setAudio } = useContext(AudioContext);
   const { playlist, setPlaylist } = usePlaylist();
   const [loopStatus, setLoopStatus] = React.useState<LoopStatusType>('none');
   const [isShuffle, setIsShuffle] = React.useState<boolean>(false);
 
   const trackIndex = useMemo(() => {
     const audioIndex = playlist.audios.findIndex(
-      (audio) => audio.id === audio.id
+      (audio) => audio.id === track.id
     );
 
     return audioIndex;
-  }, [audio, playlist]);
+  }, [track, playlist]);
 
   const toggleShuffle = () => setIsShuffle((prev) => !prev);
   const toggleLoop = () => setLoopStatus(toggleLoopStatus(loopStatus));
+
+  const backAudio = () => {
+    if (!track.id || !playlist.id) return;
+
+    if (trackIndex === 0) {
+      setAudio(playlist.audios[playlist.audios.length - 1]);
+      return;
+    }
+
+    setAudio(playlist.audios[trackIndex - 1]);
+  };
+
+  const forwardAudio = () => {
+    if (!track.id || !playlist.id) return;
+
+    if (playlist.audios.length - 1 === trackIndex) {
+      setAudio(playlist.audios[0]);
+      return;
+    }
+
+    setAudio(playlist.audios[trackIndex + 1]);
+  };
 
   return (
     <PlaylistContext.Provider
@@ -33,6 +55,8 @@ export const PlaylistProvider = ({ children }: React.PropsWithChildren) => {
         isShuffle,
         loopStatus,
         toggleLoop,
+        backAudio,
+        forwardAudio,
       }}
     >
       {children}

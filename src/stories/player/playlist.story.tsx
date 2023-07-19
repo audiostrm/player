@@ -42,7 +42,16 @@ const Playlist: StoryFn<typeof Player> = () => {
     },
     {
       id: 'playlist #2',
-      audios: tracks,
+      audios: [
+        {
+          id: 'clk9wgf070007mc0k7rv23xok',
+          artist: 'Kesha',
+          title: 'Tiktok',
+          image:
+            'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/d6c68199-4c94-45a4-95b2-a33e9118797e',
+        },
+        ...tracks,
+      ],
       preAudio: {
         id: 'cljacj88u0001l908w524gkqt',
         artist: 'Alexandra Stan',
@@ -59,7 +68,7 @@ const Playlist: StoryFn<typeof Player> = () => {
           key={playlist.id}
           onClick={() => {
             setPlaylist({ audios: playlist.audios, id: playlist.id });
-            setAudio(playlist.preAudio);
+            setAudio(playlist.preAudio, playlist.id);
           }}
         >
           {playlist.id}

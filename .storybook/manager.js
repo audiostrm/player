@@ -1,6 +1,6 @@
 import { addons } from '@storybook/manager-api';
 import { create } from '@storybook/theming/create';
-import logo from './images/logo.png'
+import logo from './images/logo.png';
 
 addons.setConfig({
   theme: create({

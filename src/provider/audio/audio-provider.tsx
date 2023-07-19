@@ -6,6 +6,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   const source = useRef<AudioBufferSourceNode>();
   const ctx = useRef<AudioContext>();
   const startTime = useRef<number>(0);
+  const playlistIdRef = useRef<string>('');
   const volumeValue = useRef<number>(0.8);
   const gainNode = useRef<GainNode>();
   const [playbackTime, setPlaybackTime] = useState<number>(0);
@@ -15,17 +16,17 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [data, setData] = useState<AudioType>({});
 
-  const remoteLoadAudio = (newTrack: AudioType) => {
-    if (newTrack.id === data.id && playing) {
-      pause();
+  const remoteLoadAudio = (newTrack: AudioType, playlistId?: string) => {
+    
+    if (newTrack.id === data.id || playlistIdRef.current === playlistId) {
+      handlePlaying();
       return;
     }
-
-    if (newTrack.id === data.id && !playing) {
-      play();
-      return;
+    
+    if(playlistId){
+      playlistIdRef.current = playlistId
     }
-
+    
     stop();
     setLoading(true);
     setPlaying(false);
@@ -131,7 +132,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     stop(true);
   };
 
-  const handlePlaying = () => {
+  function handlePlaying() {
     if (playing) {
       setPlaying(false);
       pause();
@@ -139,7 +140,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     }
 
     play();
-  };
+  }
 
   const volumeChange = (volume: `${number}%`) => {
     const pureNumber = Number(volume.replace('%', ''));

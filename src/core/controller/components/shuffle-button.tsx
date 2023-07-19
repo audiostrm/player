@@ -12,8 +12,8 @@ export const ShuffleButton = () => {
   );
 
   return (
-    <button className="side-controller-button" onClick={toggleShuffle}>
+    <div className="side-controller-button" onClick={toggleShuffle}>
       <ShuffleIcon color={shuffleIconColor} />
-    </button>
+    </div>
   );
 };
