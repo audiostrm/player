@@ -10,8 +10,8 @@ type PlaylistContextType = {
   toggleLoop: () => void;
   isShuffle: boolean;
   loopStatus: LoopStatusType;
-  forwardAudio: () => void
-  backAudio: () => void
+  forwardAudio: () => void;
+  backAudio: () => void;
 };
 
 export const PlaylistContext = createContext<PlaylistContextType>({
@@ -23,5 +23,5 @@ export const PlaylistContext = createContext<PlaylistContextType>({
   isShuffle: false,
   loopStatus: 'none',
   backAudio: () => {},
-  forwardAudio: () => {}
+  forwardAudio: () => {},
 });

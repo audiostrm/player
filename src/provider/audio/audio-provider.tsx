@@ -17,16 +17,15 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   const [data, setData] = useState<AudioType>({});
 
   const remoteLoadAudio = (newTrack: AudioType, playlistId?: string) => {
-    
     if (newTrack.id === data.id || playlistIdRef.current === playlistId) {
       handlePlaying();
       return;
     }
-    
-    if(playlistId){
-      playlistIdRef.current = playlistId
+
+    if (playlistId) {
+      playlistIdRef.current = playlistId;
     }
-    
+
     stop();
     setLoading(true);
     setPlaying(false);

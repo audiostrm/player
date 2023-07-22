@@ -7,7 +7,7 @@ export const usePlaylist = () => {
     audios: AudioType[];
   }>({ audios: [], id: '' });
 
-  const setPlaylist = (playlist: { id: string; audios: AudioType[] }) => {    
+  const setPlaylist = (playlist: { id: string; audios: AudioType[] }) => {
     setPlaylists(playlist);
   };
 
