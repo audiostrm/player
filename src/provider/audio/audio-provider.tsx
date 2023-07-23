@@ -15,6 +15,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   const [loading, setLoading] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [data, setData] = useState<AudioType>({});
+  const [isEnded, setIsEnded] = useState(false)
 
   const remoteLoadAudio = (newTrack: AudioType, playlistId?: string) => {
     if (newTrack.id === data.id || playlistIdRef.current === playlistId) {
@@ -51,6 +52,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
           setPlaybackTime(0);
           setPlaying(false);
           clearInterval(interval);
+          setIsEnded(true)
         }
       }
 
@@ -77,6 +79,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     setBuffer(decodedChunk);
 
     setPlaybackTime(0);
+    setIsEnded(false)
   }
 
   const initSource = () => {
@@ -164,6 +167,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
         setCurrentTime,
         setAudio: remoteLoadAudio,
         audio: data,
+        isEnded
       }}
     >
       {children}

@@ -1,13 +1,18 @@
 import { AudioContext } from '@/context/audio-context';
 import { PlaylistContext } from '@/context/playlist-context';
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import { usePlaylist } from './hooks/usePlaylist';
 import { toggleLoopStatus } from './utils/toggle-loop';
 
 export type LoopStatusType = 'none' | 'single' | 'all';
 
 export const PlaylistProvider = ({ children }: React.PropsWithChildren) => {
-  const { audio: track, setAudio } = useContext(AudioContext);
+  const {
+    audio: track,
+    setAudio,
+    isEnded,
+    handlePlaying,
+  } = useContext(AudioContext);
   const { playlist, setPlaylist } = usePlaylist();
   const [loopStatus, setLoopStatus] = React.useState<LoopStatusType>('none');
   const [isShuffle, setIsShuffle] = React.useState<boolean>(false);
@@ -45,6 +50,17 @@ export const PlaylistProvider = ({ children }: React.PropsWithChildren) => {
     setAudio(playlist.audios[trackIndex + 1]);
   };
 
+  useEffect(() => {
+    if (isEnded) {
+      if (loopStatus === 'single') {
+        handlePlaying();
+      }
+      if (loopStatus === 'all') {
+        forwardAudio();
+      }
+    }
+  }, [isEnded, loopStatus]);
+  
   return (
     <PlaylistContext.Provider
       value={{
