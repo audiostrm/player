@@ -1,5 +1,5 @@
 export enum PLAYERSTORAGE {
-  SHUFFLE = 'as/sh',
-  LOOP = 'as/l',
   LAST_AUDIO = 'as/la',
+  LOOP = 'as/l',
+  SHUFFLE = 'as/sh',
 }
