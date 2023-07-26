@@ -1,10 +1,12 @@
 import { AudioContext } from '@/context/audio-context';
 import { PlaylistContext } from '@/context/playlist-context';
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useMemo } from 'react';
 import { usePlaylist } from './hooks/usePlaylist';
 import { toggleLoopStatus } from './utils/toggle-loop';
+import { PLAYERSTORAGE } from './constant/keys';
 
 export type LoopStatusType = 'none' | 'single' | 'all';
+const loopValidate: LoopStatusType[] = ['all', 'none', 'single'];
 
 export const PlaylistProvider = ({ children }: React.PropsWithChildren) => {
   const {
@@ -25,8 +27,17 @@ export const PlaylistProvider = ({ children }: React.PropsWithChildren) => {
     return audioIndex;
   }, [track, playlist]);
 
-  const toggleShuffle = () => setIsShuffle((prev) => !prev);
-  const toggleLoop = () => setLoopStatus(toggleLoopStatus(loopStatus));
+  const toggleShuffle = () => {
+    localStorage.setItem(PLAYERSTORAGE.SHUFFLE, JSON.stringify(!isShuffle));
+    setIsShuffle((prev) => !prev);
+  };
+  const toggleLoop = () => {
+    localStorage.setItem(
+      PLAYERSTORAGE.LOOP,
+      JSON.stringify(toggleLoopStatus(loopStatus))
+    );
+    setLoopStatus(toggleLoopStatus(loopStatus));
+  };
 
   const backAudio = () => {
     if (!track.id || !playlist.id) return;
@@ -60,7 +71,27 @@ export const PlaylistProvider = ({ children }: React.PropsWithChildren) => {
       }
     }
   }, [isEnded, loopStatus]);
-  
+
+  useLayoutEffect(() => {
+    const shuffleLocal = localStorage.getItem(PLAYERSTORAGE.SHUFFLE);
+    const loopLocal = localStorage.getItem(PLAYERSTORAGE.LOOP);
+    // const lastAudioLocal = localStorage.getItem(PLAYERSTORAGE.LAST_AUDIO);
+
+    if (shuffleLocal) {
+      const parseShuffle = JSON.parse(shuffleLocal);
+      setIsShuffle(!!parseShuffle);
+    }
+
+    if (loopLocal) {
+      const parseLoop = JSON.parse(loopLocal);
+      if (!loopValidate.includes(parseLoop)) {
+        localStorage.removeItem(PLAYERSTORAGE.LOOP);
+      } else {
+        setLoopStatus(parseLoop);
+      }
+    }
+  }, []);
+
   return (
     <PlaylistContext.Provider
       value={{

@@ -19,7 +19,7 @@ export type AudioContextProps = {
   setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
   setAudio: (data: AudioType, playlistId?: string) => void;
   audio: AudioType;
-  isEnded: boolean
+  isEnded: boolean;
 };
 
 export const AudioContext = React.createContext<AudioContextProps>({
@@ -32,5 +32,5 @@ export const AudioContext = React.createContext<AudioContextProps>({
   setCurrentTime: () => {},
   setAudio: () => {},
   audio: {},
-  isEnded: false
+  isEnded: false,
 });
