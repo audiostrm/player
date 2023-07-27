@@ -59,8 +59,6 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     setCurrentTime(0);
 
     if (loading) {
-      console.log('aborted?');
-
       abortController.current.abort();
       abortController.current = new AbortController();
     }
@@ -72,9 +70,6 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
         loadNewBuffer(arrayBuffer);
         setLoading(false);
       })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   //if new buffer appeared play audio

@@ -40,5 +40,6 @@ module.exports = {
     'react/require-default-props': 'off',
     'typescript-sort-keys/string-enum': 'error',
     'unused-imports/no-unused-imports': 'error',
+    'no-console': 'error',
   },
 };

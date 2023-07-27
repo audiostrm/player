@@ -8,7 +8,11 @@ export const BackButton = () => {
   const { resetTime } = useContext(AudioContext);
 
   return (
-    <div className="side-controller-button" onClick={resetTime} onDoubleClick={backAudio}>
+    <div
+      className="side-controller-button"
+      onClick={resetTime}
+      onDoubleClick={backAudio}
+    >
       <BackIcon />
     </div>
   );
