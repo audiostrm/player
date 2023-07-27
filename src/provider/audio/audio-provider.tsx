@@ -1,6 +1,9 @@
 import { API_URL } from '@/api';
 import { AudioContext as Context, AudioType } from '@/context/audio-context';
 import React, { useEffect, useRef, useState } from 'react';
+import { PLAYERSTORAGE } from '../playlist/constant/keys';
+import { isAudioType } from './utils/is-audio-type';
+import { LastAudioLocalType } from './types';
 
 export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   const source = useRef<AudioBufferSourceNode>();
@@ -17,8 +20,29 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   const [data, setData] = useState<AudioType>({});
   const [isEnded, setIsEnded] = useState(false);
 
+  useEffect(() => {
+    if (data?.id) {
+      localStorage.setItem(PLAYERSTORAGE.LAST_AUDIO, JSON.stringify(data));
+    }
+  }, [data, currentTime]);
+
+  useEffect(() => {
+    const localLastAudio = localStorage.getItem(PLAYERSTORAGE.LAST_AUDIO);
+
+    if (!localLastAudio) return;
+
+    const parseLastAudio: LastAudioLocalType = JSON.parse(localLastAudio);
+
+    if (!isAudioType(parseLastAudio)) {
+      localStorage.removeItem(PLAYERSTORAGE.LAST_AUDIO);
+      return;
+    }
+
+    setData(parseLastAudio);
+  }, []);
+
   const remoteLoadAudio = (newTrack: AudioType, playlistId?: string) => {
-    if (newTrack.id === data.id || playlistIdRef.current === playlistId) {
+    if (newTrack.id === data?.id || playlistIdRef.current === playlistId) {
       handlePlaying();
       return;
     }
@@ -94,6 +118,17 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   };
 
   const play = () => {
+    if (!buffer && data.id) {
+      setLoading(true);
+      fetch(API_URL + data.id)
+        .then((response) => response.arrayBuffer())
+        .then((arrayBuffer) => {
+          loadNewBuffer(arrayBuffer);
+          setLoading(false);
+        });
+      return;
+    }
+
     if (playing || loading) return;
 
     setCurrentTime(playbackTime);
@@ -157,6 +192,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     <Context.Provider
       value={{
         seek,
+        resetTime: () => seek(0),
         playing,
         handlePlaying,
         ctx: ctx.current,

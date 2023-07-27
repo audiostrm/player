@@ -39,6 +39,7 @@ export const PlaylistProvider = ({ children }: React.PropsWithChildren) => {
     setLoopStatus(toggleLoopStatus(loopStatus));
   };
 
+
   const backAudio = () => {
     if (!track.id || !playlist.id) return;
 
@@ -75,7 +76,6 @@ export const PlaylistProvider = ({ children }: React.PropsWithChildren) => {
   useLayoutEffect(() => {
     const shuffleLocal = localStorage.getItem(PLAYERSTORAGE.SHUFFLE);
     const loopLocal = localStorage.getItem(PLAYERSTORAGE.LOOP);
-    // const lastAudioLocal = localStorage.getItem(PLAYERSTORAGE.LAST_AUDIO);
 
     if (shuffleLocal) {
       const parseShuffle = JSON.parse(shuffleLocal);

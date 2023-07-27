@@ -1,5 +1,5 @@
-export enum PLAYERSTORAGE {
-  LAST_AUDIO = 'as/la',
-  LOOP = 'as/l',
-  SHUFFLE = 'as/sh',
-}
+export const PLAYERSTORAGE = {
+  LAST_AUDIO: 'as/la',
+  LOOP: 'as/l',
+  SHUFFLE: 'as/sh',
+} as const ;

@@ -12,6 +12,7 @@ export type AudioContextProps = {
   handlePlaying: () => void;
   ctx?: AudioContext;
   buffer?: AudioBuffer;
+  resetTime: () => void,
   seek: (seek: number) => void;
   volumeChange: (volume: `${number}%`) => void;
   loading: boolean;
@@ -26,6 +27,7 @@ export const AudioContext = React.createContext<AudioContextProps>({
   playing: false,
   handlePlaying: () => {},
   seek: () => {},
+  resetTime: () => {},
   volumeChange: () => {},
   loading: false,
   currentTime: 0,
