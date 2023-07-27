@@ -39,7 +39,6 @@ export const PlaylistProvider = ({ children }: React.PropsWithChildren) => {
     setLoopStatus(toggleLoopStatus(loopStatus));
   };
 
-
   const backAudio = () => {
     if (!track.id || !playlist.id) return;
 

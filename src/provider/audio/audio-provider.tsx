@@ -12,6 +12,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   const playlistIdRef = useRef<string>('');
   const volumeValue = useRef<number>(0.8);
   const gainNode = useRef<GainNode>();
+  const abortController = useRef<AbortController>(new AbortController());
   const [playbackTime, setPlaybackTime] = useState<number>(0);
   const [playing, setPlaying] = useState<boolean>(false);
   const [buffer, setBuffer] = useState<AudioBuffer>();
@@ -42,6 +43,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   }, []);
 
   const remoteLoadAudio = (newTrack: AudioType, playlistId?: string) => {
+    setData(newTrack);
     if (newTrack.id === data?.id || playlistIdRef.current === playlistId) {
       handlePlaying();
       return;
@@ -54,20 +56,31 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     stop();
     setLoading(true);
     setPlaying(false);
-    setData(newTrack);
     setCurrentTime(0);
-    fetch(API_URL + newTrack.id)
+
+    if (loading) {
+      console.log('aborted?');
+
+      abortController.current.abort();
+      abortController.current = new AbortController();
+    }
+
+    // fetch audio and decode arraybuffer
+    fetch(API_URL + newTrack.id, { signal: abortController.current.signal })
       .then((response) => response.arrayBuffer())
       .then((arrayBuffer) => {
         loadNewBuffer(arrayBuffer);
         setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
-  useEffect(() => {
-    if (buffer) play();
-  }, [buffer]);
+  //if new buffer appeared play audio
+  useEffect(() => buffer && play(), [buffer]);
 
+  // currentTime and audio end handler
   useEffect(() => {
     const interval = setInterval(() => {
       if (buffer) {
@@ -95,6 +108,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     return () => clearInterval(interval);
   }, [currentTime, playbackTime, playing]);
 
+  // load new chunk from API
   async function loadNewBuffer(chunk: ArrayBuffer) {
     ctx.current = new AudioContext();
 
@@ -106,6 +120,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     setIsEnded(false);
   }
 
+  // prepare speakers and volume
   const initSource = () => {
     source.current = ctx.current?.createBufferSource();
     source.current!.buffer = buffer as AudioBuffer;
@@ -117,8 +132,9 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     gainNode.current!.gain.value = volumeValue.current;
   };
 
+  // playing and fetching locally saved audio handler
   const play = () => {
-    if (!buffer && data.id) {
+    if (!buffer && data.id && !loading) {
       setLoading(true);
       fetch(API_URL + data.id)
         .then((response) => response.arrayBuffer())
@@ -139,6 +155,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     setPlaying(true);
   };
 
+  // stop audio
   const stop = (pause?: boolean) => {
     if (!playing) return;
 
@@ -150,6 +167,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     source.current?.stop();
   };
 
+  // seeking audio on time handler
   const seek = (seekTime: number) => {
     if (playbackTime > buffer?.duration!) return;
 
@@ -164,11 +182,13 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     setPlaybackTime(seekTime);
   };
 
+  // pause handler
   const pause = () => {
     setPlaying(false);
     stop(true);
   };
 
+  // remotely clicking play/pause handler
   function handlePlaying() {
     if (playing) {
       setPlaying(false);
@@ -179,6 +199,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     play();
   }
 
+  // volume changer handler
   const volumeChange = (volume: `${number}%`) => {
     const pureNumber = Number(volume.replace('%', ''));
     volumeValue.current = pureNumber / 100;

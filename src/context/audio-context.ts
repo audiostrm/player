@@ -12,7 +12,7 @@ export type AudioContextProps = {
   handlePlaying: () => void;
   ctx?: AudioContext;
   buffer?: AudioBuffer;
-  resetTime: () => void,
+  resetTime: () => void;
   seek: (seek: number) => void;
   volumeChange: (volume: `${number}%`) => void;
   loading: boolean;

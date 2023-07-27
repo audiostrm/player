@@ -11,7 +11,7 @@ export const useAudio = () => {
     volumeChange,
     loading,
     setCurrentTime,
-    audio
+    audio,
   } = React.useContext(AudioContext);
 
   return {
