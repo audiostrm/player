@@ -9,8 +9,8 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   const source = useRef<AudioBufferSourceNode>();
   const ctx = useRef<AudioContext>();
   const startTime = useRef<number>(0);
-  const playlistIdRef = useRef<string>('');
-  const volumeValue = useRef<number>(0.8);
+  const playlistIdRef = useRef<string | undefined>('');
+  const volumeValue = useRef<number>(0.1);
   const gainNode = useRef<GainNode>();
   const abortController = useRef<AbortController>(new AbortController());
   const [playbackTime, setPlaybackTime] = useState<number>(0);
@@ -42,9 +42,31 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     setData(parseLastAudio);
   }, []);
 
-  const remoteLoadAudio = (newTrack: AudioType, playlistId?: string) => {
-    setData(newTrack);
-    if (newTrack.id === data?.id || playlistIdRef.current === playlistId) {
+  const remoteLoadAudio = (
+    newTrack: AudioType,
+    playlistId?: string,
+    userInteracted?: boolean
+  ) => {
+    if (newTrack.id === data.id) {
+      handlePlaying();
+      return;
+    }
+
+    if (playlistId === playlistIdRef.current && newTrack.id === data.id) {
+      handlePlaying();
+      return;
+    }
+
+    if (
+      playlistId === playlistIdRef.current &&
+      newTrack.id !== data.id &&
+      !userInteracted
+    ) {
+      handlePlaying();
+      return;
+    }
+
+    if (playlistId !== playlistIdRef.current && newTrack.id === data.id) {
       handlePlaying();
       return;
     }
@@ -53,6 +75,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
       playlistIdRef.current = playlistId;
     }
 
+    setData(newTrack);
     stop();
     setLoading(true);
     setPlaying(false);
@@ -69,7 +92,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
       .then((arrayBuffer) => {
         loadNewBuffer(arrayBuffer);
         setLoading(false);
-      })
+      });
   };
 
   //if new buffer appeared play audio

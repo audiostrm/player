@@ -6,7 +6,7 @@ export const VolumeTracker = () => {
   const volumeRef = useRef<HTMLDivElement>(null);
   const isPressed = useRef<boolean>(false);
   const { volumeChange } = useAudio();
-  const [volume, setVolume] = useState<`${number}%`>('80%');
+  const [volume, setVolume] = useState<`${number}%`>('10%');
 
   const mouseDown = (e: MouseEvent) => {
     if (volumeRef.current && volumeRef.current.contains(e.target as Node)) {

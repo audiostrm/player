@@ -38,7 +38,6 @@ export const PlaylistProvider = ({ children }: React.PropsWithChildren) => {
     );
     setLoopStatus(toggleLoopStatus(loopStatus));
   };
-
   const backAudio = () => {
     if (!track.id || !playlist.id) return;
 
@@ -47,7 +46,7 @@ export const PlaylistProvider = ({ children }: React.PropsWithChildren) => {
       return;
     }
 
-    setAudio(playlist.audios[trackIndex - 1]);
+    setAudio(playlist.audios[trackIndex - 1], undefined, true);
   };
 
   const forwardAudio = () => {
@@ -58,7 +57,7 @@ export const PlaylistProvider = ({ children }: React.PropsWithChildren) => {
       return;
     }
 
-    setAudio(playlist.audios[trackIndex + 1]);
+    setAudio(playlist.audios[trackIndex + 1], undefined, true);
   };
 
   useEffect(() => {

@@ -53,10 +53,11 @@ const Playlist: StoryFn<typeof Player> = () => {
         ...tracks,
       ],
       preAudio: {
-        id: 'cljacj88u0001l908w524gkqt',
-        artist: 'Alexandra Stan',
-        image: 'https://avatars.githubusercontent.com/u/65135792?v=4?s=400',
-        title: 'Come Into My World',
+        id: 'clk9wgf070007mc0k7rv23xok',
+        artist: 'Kesha',
+        title: 'Tiktok',
+        image:
+          'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/d6c68199-4c94-45a4-95b2-a33e9118797e',
       },
     },
   ];
@@ -83,6 +84,47 @@ const Playlist: StoryFn<typeof Player> = () => {
           ))}
         </code>
       )}
+      <br />
+      <div style={{ display: 'flex' }}>
+        <div style={{ color: '#FFF' }}>
+          {playlists[0].id}
+          {playlists[0].audios.map((e) => (
+            <div key={e.id}>
+              <button
+                onClick={() => {
+                  setPlaylist({
+                    audios: playlists[0].audios,
+                    id: playlists[0].id,
+                  });
+                  setAudio(e, playlists[0].id, true);
+                }}
+              >
+                {e.title}
+              </button>
+              <br />
+            </div>
+          ))}
+        </div>
+        <div style={{ color: '#FFF' }}>
+          {playlists[1].id}
+          {playlists[1].audios.map((e) => (
+            <div key={e.id}>
+              <button
+                onClick={() => {
+                  setPlaylist({
+                    audios: playlists[1].audios,
+                    id: playlists[1].id,
+                  });
+                  setAudio(e, playlists[1].id, true);
+                }}
+              >
+                {e.title}
+              </button>
+              <br />
+            </div>
+          ))}
+        </div>
+      </div>
       <Player />
     </>
   );

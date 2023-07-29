@@ -18,7 +18,11 @@ export type AudioContextProps = {
   loading: boolean;
   currentTime: number;
   setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
-  setAudio: (data: AudioType, playlistId?: string) => void;
+  setAudio: (
+    data: AudioType,
+    playlistId?: string,
+    userInteracted?: boolean
+  ) => void;
   audio: AudioType;
   isEnded: boolean;
 };
