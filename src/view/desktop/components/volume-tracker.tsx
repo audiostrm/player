@@ -1,12 +1,28 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { volumeWidth } from '../utils/volume-width';
 import { useAudio } from '@/provider/audio/hooks/useAudio';
+import { PLAYERSTORAGE } from '@/constant/keys';
 
 export const VolumeTracker = () => {
   const volumeRef = useRef<HTMLDivElement>(null);
   const isPressed = useRef<boolean>(false);
   const { volumeChange } = useAudio();
-  const [volume, setVolume] = useState<`${number}%`>('10%');
+  const [volume, setVolume] = useState<`${number}%`>('80%');
+
+  useLayoutEffect(() => {
+    const volumeLocal = localStorage.getItem(PLAYERSTORAGE.VOLUME);
+
+    if (volumeLocal) {
+      const parseVolume = parseFloat(JSON.parse(volumeLocal));
+
+      if (isNaN(parseVolume)) return;
+
+      if (parseVolume > 0 && parseVolume < 100) {
+        setVolume(`${parseVolume}%`);
+        volumeChange(`${parseVolume}%`);
+      }
+    }
+  }, []);
 
   const mouseDown = (e: MouseEvent) => {
     if (volumeRef.current && volumeRef.current.contains(e.target as Node)) {
@@ -25,8 +41,10 @@ export const VolumeTracker = () => {
     }
   };
 
-  const mouseUp = () => {
+  const mouseUp = (e: MouseEvent) => {
     isPressed.current = false;
+    const volume = volumeWidth(volumeRef, e.clientX);
+    localStorage.setItem(PLAYERSTORAGE.VOLUME, JSON.stringify(volume));
   };
 
   useEffect(() => {

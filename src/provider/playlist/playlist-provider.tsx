@@ -3,7 +3,7 @@ import { PlaylistContext } from '@/context/playlist-context';
 import React, { useContext, useEffect, useLayoutEffect, useMemo } from 'react';
 import { usePlaylist } from './hooks/usePlaylist';
 import { toggleLoopStatus } from './utils/toggle-loop';
-import { PLAYERSTORAGE } from './constant/keys';
+import { PLAYERSTORAGE } from '../../constant/keys';
 
 export type LoopStatusType = 'none' | 'single' | 'all';
 const loopValidate: LoopStatusType[] = ['all', 'none', 'single'];

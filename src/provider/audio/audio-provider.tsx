@@ -1,7 +1,7 @@
 import { API_URL } from '@/api';
 import { AudioContext as Context, AudioType } from '@/context/audio-context';
-import React, { useEffect, useRef, useState } from 'react';
-import { PLAYERSTORAGE } from '../playlist/constant/keys';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { PLAYERSTORAGE } from '../../constant/keys';
 import { isAudioType } from './utils/is-audio-type';
 import { LastAudioLocalType } from './types';
 
@@ -10,8 +10,8 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   const ctx = useRef<AudioContext>();
   const startTime = useRef<number>(0);
   const playlistIdRef = useRef<string | undefined>('');
-  const volumeValue = useRef<number>(0.1);
   const gainNode = useRef<GainNode>();
+  const volumeValue = useRef<number>(0.8)
   const abortController = useRef<AbortController>(new AbortController());
   const [playbackTime, setPlaybackTime] = useState<number>(0);
   const [playing, setPlaying] = useState<boolean>(false);
@@ -20,6 +20,21 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [data, setData] = useState<AudioType>({});
   const [isEnded, setIsEnded] = useState(false);
+
+  useLayoutEffect(() => {
+    const volumeLocal = localStorage.getItem(PLAYERSTORAGE.VOLUME);
+
+    if (volumeLocal) {
+      const parseVolume = parseFloat(JSON.parse(volumeLocal));
+
+      if (isNaN(parseVolume)) return;
+
+      if (parseVolume > 0 && parseVolume < 100) {
+        volumeChange(`${parseVolume}%`);
+        volumeValue.current = parseVolume / 100
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (data?.id) {
