@@ -11,7 +11,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   const startTime = useRef<number>(0);
   const playlistIdRef = useRef<string | undefined>('');
   const gainNode = useRef<GainNode>();
-  const volumeValue = useRef<number>(0.8)
+  const volumeValue = useRef<number>(0.8);
   const abortController = useRef<AbortController>(new AbortController());
   const [playbackTime, setPlaybackTime] = useState<number>(0);
   const [playing, setPlaying] = useState<boolean>(false);
@@ -31,7 +31,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
 
       if (parseVolume > 0 && parseVolume < 100) {
         volumeChange(`${parseVolume}%`);
-        volumeValue.current = parseVolume / 100
+        volumeValue.current = parseVolume / 100;
       }
     }
   }, []);
