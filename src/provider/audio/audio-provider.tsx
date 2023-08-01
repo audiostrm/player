@@ -1,6 +1,6 @@
 import { API_URL } from '@/api';
 import { AudioContext as Context, AudioType } from '@/context/audio-context';
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { PLAYERSTORAGE } from '../../constant/keys';
 import { isAudioType } from './utils/is-audio-type';
 import { LastAudioLocalType } from './types';
@@ -21,7 +21,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   const [data, setData] = useState<AudioType>({});
   const [isEnded, setIsEnded] = useState(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const volumeLocal = localStorage.getItem(PLAYERSTORAGE.VOLUME);
 
     if (volumeLocal) {

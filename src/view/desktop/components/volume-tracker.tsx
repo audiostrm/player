@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { volumeWidth } from '../utils/volume-width';
 import { useAudio } from '@/provider/audio/hooks/useAudio';
 import { PLAYERSTORAGE } from '@/constant/keys';
@@ -9,7 +9,7 @@ export const VolumeTracker = () => {
   const { volumeChange } = useAudio();
   const [volume, setVolume] = useState<`${number}%`>('80%');
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const volumeLocal = localStorage.getItem(PLAYERSTORAGE.VOLUME);
 
     if (volumeLocal) {

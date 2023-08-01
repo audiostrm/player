@@ -1,6 +1,6 @@
 import { AudioContext } from '@/context/audio-context';
 import { PlaylistContext } from '@/context/playlist-context';
-import React, { useContext, useEffect, useLayoutEffect, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import { usePlaylist } from './hooks/usePlaylist';
 import { toggleLoopStatus } from './utils/toggle-loop';
 import { PLAYERSTORAGE } from '../../constant/keys';
@@ -71,7 +71,7 @@ export const PlaylistProvider = ({ children }: React.PropsWithChildren) => {
     }
   }, [isEnded, loopStatus]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const shuffleLocal = localStorage.getItem(PLAYERSTORAGE.SHUFFLE);
     const loopLocal = localStorage.getItem(PLAYERSTORAGE.LOOP);
 
