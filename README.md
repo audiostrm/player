@@ -44,5 +44,3 @@ if (sourceIndex > sources.length - 1 && sources.length < totalChunks) {
 <img width="1425" alt="image" src="https://github.com/audiostreamhq/player/assets/65135792/eee61e85-4617-4bc2-aa74-3e3988af0093">
 
 for example we got 243 seconds long audio we know there is 49 chunks in total because each chunk contains 5 seconds long audio, when we want to seek it on 132, we put current source index on `25` because 132 / 5 = 26.4 and starting playing of 25th chunk in array from 2 seconds 2 second
-
-### Forward and Back Audio
