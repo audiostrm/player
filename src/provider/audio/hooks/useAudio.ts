@@ -7,7 +7,6 @@ export const useAudio = () => {
     playing,
     currentTime,
     seek,
-    buffer,
     volumeChange,
     loading,
     setCurrentTime,
@@ -16,7 +15,7 @@ export const useAudio = () => {
 
   return {
     isPlaying: playing,
-    duration: buffer?.duration,
+    duration: audio.duration,
     currentTime,
     togglePlay: handlePlaying,
     seek,

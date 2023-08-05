@@ -1,9 +1,9 @@
-import { API_URL } from '@/api';
 import { AudioContext as Context, AudioType } from '@/context/audio-context';
 import React, { useEffect, useRef, useState } from 'react';
 import { PLAYERSTORAGE } from '../../constant/keys';
 import { isAudioType } from './utils/is-audio-type';
 import { LastAudioLocalType } from './types';
+import { API_URL } from '@/api';
 
 export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   const source = useRef<AudioBufferSourceNode>();
@@ -18,7 +18,10 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   const [buffer, setBuffer] = useState<AudioBuffer>();
   const [loading, setLoading] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const [data, setData] = useState<AudioType>({});
+  const [data, setData] = useState<AudioType>({
+    duration: 0,
+    preChunk: '',
+  });
   const [isEnded, setIsEnded] = useState(false);
 
   useEffect(() => {
@@ -169,7 +172,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   const play = () => {
     if (!buffer && data.id && !loading) {
       setLoading(true);
-      fetch(API_URL + data.id)
+      fetch(data.preChunk)
         .then((response) => response.arrayBuffer())
         .then((arrayBuffer) => {
           loadNewBuffer(arrayBuffer);
@@ -186,6 +189,8 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     source.current?.start(0, playbackTime);
     startTime.current = Date.now();
     setPlaying(true);
+
+    //TODO: here must go chunk by chunk decoding check demo.audiostream
   };
 
   // stop audio

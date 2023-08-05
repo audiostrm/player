@@ -4,5 +4,6 @@ export type LastAudioLocalType = {
   title?: string;
   artist?: string | null;
   lastStopped?: string | null;
-  duration?: number | null;
+  duration: number;
+  preChunk: string;
 };

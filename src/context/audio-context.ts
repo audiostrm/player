@@ -2,9 +2,11 @@ import React from 'react';
 
 export type AudioType = {
   id?: string;
+  preChunk: string;
   image?: string | null;
   title?: string;
   artist?: string | null;
+  duration: number;
 };
 
 export type AudioContextProps = {
@@ -37,6 +39,9 @@ export const AudioContext = React.createContext<AudioContextProps>({
   currentTime: 0,
   setCurrentTime: () => {},
   setAudio: () => {},
-  audio: {},
+  audio: {
+    preChunk: '',
+    duration: 0,
+  },
   isEnded: false,
 });

@@ -17,14 +17,18 @@ const Playlist: StoryFn<typeof Player> = () => {
       id: 'clj9cqopz0001kz088arksp9s',
       artist: 'AdamMusic',
       title: 'LADY GAGA, BEYONCÉ - G.U.Y. x HEATED (MASHUP)',
+      preChunk: '',
+      duration: 0,
       image:
         'https://cdn.discordapp.com/attachments/1072505285580697712/1121805560585654282/image.png',
     },
     {
       id: 'cljacj88u0001l908w524gkqt',
       artist: 'Alexandra Stan',
+      preChunk: '',
       image: 'https://avatars.githubusercontent.com/u/65135792?v=4?s=400',
       title: 'Come Into My World',
+      duration: 0,
     },
   ];
 
@@ -35,6 +39,9 @@ const Playlist: StoryFn<typeof Player> = () => {
       preAudio: {
         id: 'clj9cqopz0001kz088arksp9s',
         artist: 'AdamMusic',
+        preChunk: '',
+        duration: 0,
+
         title: 'LADY GAGA, BEYONCÉ - G.U.Y. x HEATED (MASHUP)',
         image:
           'https://cdn.discordapp.com/attachments/1072505285580697712/1121805560585654282/image.png',
@@ -47,6 +54,9 @@ const Playlist: StoryFn<typeof Player> = () => {
           id: 'clk9wgf070007mc0k7rv23xok',
           artist: 'Kesha',
           title: 'Tiktok',
+          preChunk: '',
+          duration: 0,
+
           image:
             'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/d6c68199-4c94-45a4-95b2-a33e9118797e',
         },
@@ -56,6 +66,9 @@ const Playlist: StoryFn<typeof Player> = () => {
         id: 'clk9wgf070007mc0k7rv23xok',
         artist: 'Kesha',
         title: 'Tiktok',
+        preChunk: '',
+        duration: 0,
+
         image:
           'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/d6c68199-4c94-45a4-95b2-a33e9118797e',
       },
