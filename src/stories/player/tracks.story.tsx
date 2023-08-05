@@ -19,8 +19,7 @@ const Tracks = () => {
       title: 'Bloody mary',
       preChunk: chunks.preChunk,
       duration: 244,
-      image:
-        'https://i.scdn.co/image/ab67616d0000b273a47c0e156ea3cebe37fdcab8',
+      image: 'https://i.scdn.co/image/ab67616d0000b273a47c0e156ea3cebe37fdcab8',
     },
     // {
     //   id: 'cljacj88u0001l908w524gkqt',
