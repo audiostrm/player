@@ -189,8 +189,6 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     source.current?.start(0, playbackTime);
     startTime.current = Date.now();
     setPlaying(true);
-
-    //TODO: here must go chunk by chunk decoding check demo.audiostream
   };
 
   // stop audio
