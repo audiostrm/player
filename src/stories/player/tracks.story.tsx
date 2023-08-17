@@ -13,24 +13,26 @@ const Tracks = () => {
   const { setAudio } = usePlayer();
   const tracks: AudioType[] = [
     {
-      id: 'clj9cqopz0001kz088arksp9s',
-      artist: 'AdamMusic',
-      title: 'LADY GAGA, BEYONCÉ - G.U.Y. x HEATED (MASHUP)',
-      image:
-        'https://cdn.discordapp.com/attachments/1072505285580697712/1121805560585654282/image.png',
+      url: 'https://audiostream-testing.s3.eu-north-1.amazonaws.com/y2mate.is+-+Lady+Gaga+Bloody+Mary+Official+Audio+-VFwmKL5OL-Q-192k-1692216807.mp3',
+      artist: 'Lady gaga',
+      title: 'Bloody mary',
+      duration: 244,
+      id: 'asdasd',
+      image: 'https://i.scdn.co/image/ab67616d0000b273a47c0e156ea3cebe37fdcab8',
     },
-    {
-      id: 'cljacj88u0001l908w524gkqt',
-      artist: 'Alexandra Stan',
-      image: 'https://avatars.githubusercontent.com/u/65135792?v=4?s=400',
-      title: 'Come Into My World',
-    },
+    // {
+    //   id: 'cljacj88u0001l908w524gkqt',
+    //   artist: 'Alexandra Stan',
+    //   preChunk: chunks.preChunk,
+    //   image: 'https://avatars.githubusercontent.com/u/65135792?v=4?s=400',
+    //   title: 'Come Into My World',
+    // },
   ];
 
   return (
     <>
       {tracks.map((track) => (
-        <button onClick={() => setAudio(track)} key={track.id}>
+        <button onClick={() => setAudio(track)} key={track.url}>
           {track.title}
         </button>
       ))}

@@ -1,42 +1,44 @@
 import React from 'react';
 
 export type AudioType = {
-  id?: string;
+  url: string;
+  id: string;
   image?: string | null;
   title?: string;
   artist?: string | null;
+  duration: number;
 };
 
 export type AudioContextProps = {
   playing: boolean;
   handlePlaying: () => void;
-  ctx?: AudioContext;
-  buffer?: AudioBuffer;
-  resetTime: () => void;
   seek: (seek: number) => void;
   volumeChange: (volume: `${number}%`) => void;
   loading: boolean;
   currentTime: number;
-  setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
   setAudio: (
     data: AudioType,
     playlistId?: string,
     userInteracted?: boolean
   ) => void;
+  audioNode: HTMLAudioElement;
   audio: AudioType;
-  isEnded: boolean;
+  setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export const AudioContext = React.createContext<AudioContextProps>({
   playing: false,
+  setCurrentTime: () => {},
   handlePlaying: () => {},
   seek: () => {},
-  resetTime: () => {},
   volumeChange: () => {},
   loading: false,
+  audioNode: new Audio(),
   currentTime: 0,
-  setCurrentTime: () => {},
   setAudio: () => {},
-  audio: {},
-  isEnded: false,
+  audio: {
+    id: '',
+    url: '',
+    duration: 0,
+  },
 });

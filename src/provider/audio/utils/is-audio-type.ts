@@ -4,7 +4,10 @@ export const isAudioType = (obj: any) => {
       typeof obj.id === 'string' &&
       typeof obj.image === 'string' &&
       typeof obj.title === 'string' &&
-      typeof obj.artist === 'string'
+      typeof obj.artist === 'string' &&
+      typeof obj.url === 'string' &&
+      typeof obj.lastStopped === 'number' &&
+      typeof obj.duration === 'number'
     ) {
       return true;
     }

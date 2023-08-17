@@ -14,17 +14,22 @@ const Playlist: StoryFn<typeof Player> = () => {
 
   const tracks: AudioType[] = [
     {
+      url: 'https://audiostream-testing.s3.eu-north-1.amazonaws.com/y2mate.is+-+LADY+GAGA+BEYONCE%CC%81+G.U.Y.+x+HEATED+MASHUP+-1RIdG-e0-xM-192k-1692219955.mp3',
       id: 'clj9cqopz0001kz088arksp9s',
       artist: 'AdamMusic',
       title: 'LADY GAGA, BEYONCÉ - G.U.Y. x HEATED (MASHUP)',
+      duration: 272.856,
       image:
         'https://cdn.discordapp.com/attachments/1072505285580697712/1121805560585654282/image.png',
     },
     {
-      id: 'cljacj88u0001l908w524gkqt',
-      artist: 'Alexandra Stan',
-      image: 'https://avatars.githubusercontent.com/u/65135792?v=4?s=400',
-      title: 'Come Into My World',
+      id: '1',
+      url: 'https://audiostream-testing.s3.eu-north-1.amazonaws.com/Sia+-+Elastic+Heart+(Audio).mp3',
+      artist: 'Sia',
+      image:
+        'https://upload.wikimedia.org/wikipedia/en/thumb/9/99/Sia_-_Elastic-Heart%2C_2015.png/220px-Sia_-_Elastic-Heart%2C_2015.png',
+      title: 'Plastic Heart',
+      duration: 250.2,
     },
   ];
 
@@ -33,8 +38,10 @@ const Playlist: StoryFn<typeof Player> = () => {
       id: 'playlist #1',
       audios: tracks,
       preAudio: {
+        url: 'https://audiostream-testing.s3.eu-north-1.amazonaws.com/y2mate.is+-+LADY+GAGA+BEYONCE%CC%81+G.U.Y.+x+HEATED+MASHUP+-1RIdG-e0-xM-192k-1692219955.mp3',
         id: 'clj9cqopz0001kz088arksp9s',
         artist: 'AdamMusic',
+        duration: 272.856,
         title: 'LADY GAGA, BEYONCÉ - G.U.Y. x HEATED (MASHUP)',
         image:
           'https://cdn.discordapp.com/attachments/1072505285580697712/1121805560585654282/image.png',
@@ -47,17 +54,22 @@ const Playlist: StoryFn<typeof Player> = () => {
           id: 'clk9wgf070007mc0k7rv23xok',
           artist: 'Kesha',
           title: 'Tiktok',
+          url: 'https://cdns-preview-5.dzcdn.net/stream/c-53493734be9639a325b9eb8fcea1f81a-7.mp3',
+          duration: 30,
           image:
-            'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/d6c68199-4c94-45a4-95b2-a33e9118797e',
+            'https://upload.wikimedia.org/wikipedia/en/thumb/7/7e/TiK_ToK_-_Kesha_%28official_single_cover%29.JPG/220px-TiK_ToK_-_Kesha_%28official_single_cover%29.JPG',
         },
         ...tracks,
       ],
       preAudio: {
+        url: 'https://cdns-preview-5.dzcdn.net/stream/c-53493734be9639a325b9eb8fcea1f81a-7.mp3',
         id: 'clk9wgf070007mc0k7rv23xok',
         artist: 'Kesha',
         title: 'Tiktok',
+        preChunk: '',
+        duration: 30,
         image:
-          'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/d6c68199-4c94-45a4-95b2-a33e9118797e',
+          'https://upload.wikimedia.org/wikipedia/en/thumb/7/7e/TiK_ToK_-_Kesha_%28official_single_cover%29.JPG/220px-TiK_ToK_-_Kesha_%28official_single_cover%29.JPG',
       },
     },
   ];

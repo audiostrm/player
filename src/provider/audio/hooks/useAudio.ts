@@ -7,22 +7,23 @@ export const useAudio = () => {
     playing,
     currentTime,
     seek,
-    buffer,
     volumeChange,
     loading,
     setCurrentTime,
     audio,
+    audioNode,
   } = React.useContext(AudioContext);
 
   return {
     isPlaying: playing,
-    duration: buffer?.duration,
+    duration: audio.duration,
     currentTime,
     togglePlay: handlePlaying,
+    setCurrentTime,
     seek,
+    audioNode,
     audio,
     loading,
     volumeChange,
-    setCurrentTime,
   };
 };

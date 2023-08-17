@@ -1,8 +1,5 @@
-export type LastAudioLocalType = {
-  id?: string;
-  image?: string | null;
-  title?: string;
-  artist?: string | null;
+import { AudioType } from '@/context/audio-context';
+
+export type LastAudioLocalType = AudioType & {
   lastStopped?: string | null;
-  duration?: number | null;
 };
