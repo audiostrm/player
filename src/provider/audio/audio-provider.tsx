@@ -5,7 +5,7 @@ import { LastAudioLocalType } from './types';
 import { isAudioType } from './utils/is-audio-type';
 
 export const AudioProvider = ({ children }: React.PropsWithChildren) => {
-  const audio = useRef<HTMLAudioElement>(new Audio());
+  const audio = useRef<HTMLAudioElement | undefined>(typeof Audio !== "undefined" ? new Audio("") : undefined);
   const volumeValue = useRef<number>(0.8);
   const [loading] = useState(false);
   const [playing, setPlaying] = useState(false);
@@ -19,7 +19,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   });
 
   const updateCurrentTime = () => {
-    setCurrentTime(audio.current.currentTime);
+    setCurrentTime(audio.current!.currentTime);
   };
 
   useEffect(() => {
@@ -44,32 +44,32 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     }
 
     setAudioInfo(parseLastAudio);
-    audio.current.src = parseLastAudio.url;
+    audio.current!.src = parseLastAudio.url;
     const numerizeLastStopped = Number(parseLastAudio.lastStopped);
     if (!isNaN(numerizeLastStopped)) {
       setCurrentTime(numerizeLastStopped);
-      audio.current.currentTime = numerizeLastStopped;
+      audio.current!.currentTime = numerizeLastStopped;
     }
   }, []);
 
   useEffect(() => {
-    audio.current.addEventListener('timeupdate', updateCurrentTime);
-    audio.current.addEventListener('loadedmetadata', play);
+    audio.current!.addEventListener('timeupdate', updateCurrentTime);
+    audio.current!.addEventListener('loadedmetadata', play);
 
     return () => {
-      audio.current.removeEventListener('timeupdate', updateCurrentTime);
-      audio.current.removeEventListener('loadedmetadata', play);
+      audio.current!.removeEventListener('timeupdate', updateCurrentTime);
+      audio.current!.removeEventListener('loadedmetadata', play);
     };
   });
 
   function volumeChange(volume: `${number}%`) {
     const pureNumber = Number(volume.replace('%', ''));
     volumeValue.current = pureNumber / 100;
-    audio.current.volume = pureNumber / 100;
+    audio.current!.volume = pureNumber / 100;
   }
 
   const seek = (seekTime: number) => {
-    audio.current.currentTime = seekTime;
+    audio.current!.currentTime = seekTime;
   };
 
   async function remotelyLoad(
@@ -106,7 +106,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
       playlistRef.current = playlistId;
     }
 
-    audio.current.src = newTrack.url as string;
+    audio.current!.src = newTrack.url as string;
     setAudioInfo(newTrack);
     setCurrentTime(0);
   }
@@ -117,13 +117,13 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     setPlaying(true);
 
     const isPlaying =
-      audio.current.currentTime > 0 &&
-      !audio.current.paused &&
-      !audio.current.ended &&
-      audio.current.readyState > audio.current.HAVE_CURRENT_DATA;
+      audio.current!.currentTime > 0 &&
+      !audio.current!.paused &&
+      !audio.current!.ended &&
+      audio.current!.readyState > audio.current!.HAVE_CURRENT_DATA;
 
     if (!isPlaying) {
-      audio.current.play();
+      audio.current!.play();
     }
   }
 
@@ -131,7 +131,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     isInteracted.current = true;
     if (playing) {
       setPlaying(false);
-      audio.current.pause();
+      audio.current!.pause();
     } else {
       play();
       setPlaying(true);
@@ -143,7 +143,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
       value={{
         seek,
         setCurrentTime,
-        audioNode: audio.current,
+        audioNode: audio.current!,
         handlePlaying,
         audio: audioInfo,
         currentTime,
