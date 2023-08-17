@@ -21,7 +21,7 @@ export type AudioContextProps = {
     playlistId?: string,
     userInteracted?: boolean
   ) => void;
-  audioNode: HTMLAudioElement;
+  audioNode?: HTMLAudioElement;
   audio: AudioType;
   setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
 };

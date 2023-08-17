@@ -56,9 +56,9 @@ export const PlaylistProvider = ({ children }: React.PropsWithChildren) => {
   };
 
   useEffect(() => {
-    audioNode.addEventListener('ended', () => {
+    audioNode?.addEventListener('ended', () => {
       if (loopStatus === 'single') {
-        audioNode.play();
+        audioNode?.play();
       }
       if (loopStatus === 'all') {
         forwardAudio();

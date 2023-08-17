@@ -5,7 +5,7 @@ import { LastAudioLocalType } from './types';
 import { isAudioType } from './utils/is-audio-type';
 
 export const AudioProvider = ({ children }: React.PropsWithChildren) => {
-  const audio = useRef<HTMLAudioElement | undefined>(typeof Audio !== "undefined" ? new Audio("") : undefined);
+  const audio = useRef<HTMLAudioElement>(new Audio());
   const volumeValue = useRef<number>(0.8);
   const [loading] = useState(false);
   const [playing, setPlaying] = useState(false);

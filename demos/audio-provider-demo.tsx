@@ -210,7 +210,6 @@ export const AudioDemoProvider = ({ children }: React.PropsWithChildren) => {
         playing,
         seek,
         setAudio: remotelyLoad,
-        audioNode: new Audio(),
         setCurrentTime: () => {},
         // setCurrentTime,
         volumeChange,
