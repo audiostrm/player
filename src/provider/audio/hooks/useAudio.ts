@@ -11,6 +11,7 @@ export const useAudio = () => {
     loading,
     setCurrentTime,
     audio,
+    audioNode
   } = React.useContext(AudioContext);
 
   return {
@@ -18,10 +19,11 @@ export const useAudio = () => {
     duration: audio.duration,
     currentTime,
     togglePlay: handlePlaying,
+    setCurrentTime,
     seek,
+    audioNode,
     audio,
     loading,
     volumeChange,
-    setCurrentTime,
   };
 };

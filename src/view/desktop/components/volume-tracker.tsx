@@ -17,7 +17,7 @@ export const VolumeTracker = () => {
 
       if (isNaN(parseVolume)) return;
 
-      if (parseVolume > 0 && parseVolume < 100) {
+      if (parseVolume >= 0 && parseVolume <= 100) {
         setVolume(`${parseVolume}%`);
         volumeChange(`${parseVolume}%`);
       }
@@ -42,9 +42,11 @@ export const VolumeTracker = () => {
   };
 
   const mouseUp = (e: MouseEvent) => {
-    isPressed.current = false;
-    const volume = volumeWidth(volumeRef, e.clientX);
-    localStorage.setItem(PLAYERSTORAGE.VOLUME, JSON.stringify(volume));
+    if(isPressed.current){
+      const volume = volumeWidth(volumeRef, e.clientX);
+      localStorage.setItem(PLAYERSTORAGE.VOLUME, JSON.stringify(volume));
+      isPressed.current = false;
+    }
   };
 
   useEffect(() => {

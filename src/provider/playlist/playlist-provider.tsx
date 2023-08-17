@@ -9,12 +9,7 @@ export type LoopStatusType = 'none' | 'single' | 'all';
 const loopValidate: LoopStatusType[] = ['all', 'none', 'single'];
 
 export const PlaylistProvider = ({ children }: React.PropsWithChildren) => {
-  const {
-    audio: track,
-    setAudio,
-    isEnded,
-    handlePlaying,
-  } = useContext(AudioContext);
+  const { audio: track, setAudio, audioNode } = useContext(AudioContext);
   const { playlist, setPlaylist } = usePlaylist();
   const [loopStatus, setLoopStatus] = React.useState<LoopStatusType>('none');
   const [isShuffle, setIsShuffle] = React.useState<boolean>(false);
@@ -61,15 +56,15 @@ export const PlaylistProvider = ({ children }: React.PropsWithChildren) => {
   };
 
   useEffect(() => {
-    if (isEnded) {
+    audioNode.addEventListener('ended', () => {
       if (loopStatus === 'single') {
-        handlePlaying();
+        audioNode.play();
       }
       if (loopStatus === 'all') {
         forwardAudio();
       }
-    }
-  }, [isEnded, loopStatus]);
+    });
+  });
 
   useEffect(() => {
     const shuffleLocal = localStorage.getItem(PLAYERSTORAGE.SHUFFLE);

@@ -1,7 +1,6 @@
-import { API_URL, CHUNK_SIZE } from '@/api';
 import { AudioContext as Context, AudioType } from '@/context/audio-context';
 import React, { useRef, useState } from 'react';
-import { fetchDecode } from './utils/fetch-decode';
+import { fetchDecode } from '../src/provider/audio/utils/fetch-decode';
 
 export const AudioDemoProvider = ({ children }: React.PropsWithChildren) => {
   const sourceNodes = useRef<AudioBufferSourceNode[]>([]);
@@ -20,7 +19,8 @@ export const AudioDemoProvider = ({ children }: React.PropsWithChildren) => {
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [audio, setAudio] = useState<AudioType>({
     duration: 0,
-    preChunk: '',
+    url: "",
+
   });
 
   function resetTime() {}
@@ -38,7 +38,7 @@ export const AudioDemoProvider = ({ children }: React.PropsWithChildren) => {
     const timelapse = Date.now() - startTime.current;
     const playback = timelapse / 1000 + playbackTime.current;
 
-    if (playback >= CHUNK_SIZE) {
+    if (playback >= 5) {
       startTime.current = Date.now();
       playbackTime.current = 0;
       playSourceNode();
@@ -104,26 +104,26 @@ export const AudioDemoProvider = ({ children }: React.PropsWithChildren) => {
     playlistId?: string,
     userInteracted?: boolean
   ) {
-    if (newTrack.id === audio.id) {
+    if (newTrack.url === audio.url) {
       handlePlaying();
       return;
     }
 
-    if (playlistId === playlistRef.current && newTrack.id === audio.id) {
+    if (playlistId === playlistRef.current && newTrack.url === audio.url) {
       handlePlaying();
       return;
     }
 
     if (
       playlistId === playlistRef.current &&
-      newTrack.id !== audio.id &&
+      newTrack.url !== audio.url &&
       !userInteracted
     ) {
       handlePlaying();
       return;
     }
 
-    if (playlistId !== playlistRef.current && newTrack.id === audio.id) {
+    if (playlistId !== playlistRef.current && newTrack.url === audio.url) {
       handlePlaying();
       return;
     }
@@ -136,7 +136,7 @@ export const AudioDemoProvider = ({ children }: React.PropsWithChildren) => {
     setPlaying(true);
     setCurrentTime(0);
 
-    const arrayBuffer = await fetchDecode(newTrack.preChunk);
+    const arrayBuffer = await fetchDecode('');
 
     // create buffer decode and push in source nodes
     const audioBuffer = await ctx.current?.decodeAudioData(arrayBuffer);
@@ -153,7 +153,7 @@ export const AudioDemoProvider = ({ children }: React.PropsWithChildren) => {
     // startTime.current = Date.now();
 
     // meanwhile fetch other audios
-    const audioUrlsResponse = await fetch(API_URL + newTrack.id);
+    const audioUrlsResponse = await fetch(newTrack.url as string);
     const audios: string[] = await audioUrlsResponse.json();
 
     // update totalChunks
@@ -212,9 +212,9 @@ export const AudioDemoProvider = ({ children }: React.PropsWithChildren) => {
         resetTime,
         seek,
         setAudio: remotelyLoad,
-        setCurrentTime,
+        // setCurrentTime,
         volumeChange,
-        ctx: ctx.current,
+        // ctx: ctx.current,
       }}
     >
       {children}

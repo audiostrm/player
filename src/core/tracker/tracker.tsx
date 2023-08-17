@@ -21,11 +21,12 @@ export const Tracker = () => {
     return currentTimeWidth({ currentTime, duration });
   }, [currentTime, duration, pressed, tracker]);
 
-  const windowMouseDown = (e: MouseEvent) => {
+  const windowMouseDown = (e: MouseEvent | TouchEvent) => {
     if (trackerRef.current && trackerRef.current.contains(e.target as Node)) {
       const trackerWidthPx = trackerWidth(
         trackerRef,
-        e.clientX - trackerGap(trackerRef)
+        ((e as MouseEvent).clientX || (e as TouchEvent).touches[0].clientX) -
+          trackerGap(trackerRef)
       );
       setTracker(trackerWidthPx);
       setPressed(true);
@@ -40,11 +41,12 @@ export const Tracker = () => {
     }
   };
 
-  const windowMouseDrag = (e: MouseEvent) => {
+  const windowMouseDrag = (e: MouseEvent | TouchEvent) => {
     if (pressed) {
       const trackerWidthPx = trackerWidth(
         trackerRef,
-        e.clientX - trackerGap(trackerRef)
+        ((e as MouseEvent).clientX || (e as TouchEvent).touches[0].clientX) -
+          trackerGap(trackerRef)
       );
 
       setTracker(trackerWidthPx);
@@ -55,11 +57,17 @@ export const Tracker = () => {
     window.addEventListener('mousedown', windowMouseDown);
     window.addEventListener('mousemove', windowMouseDrag);
     window.addEventListener('mouseup', windowMouseUp);
+    window.addEventListener('touchstart', windowMouseDown);
+    window.addEventListener('touchmove', windowMouseDrag);
+    window.addEventListener('touchend', windowMouseUp);
 
     return () => {
       window.removeEventListener('mousedown', windowMouseDown);
       window.removeEventListener('mousemove', windowMouseDrag);
       window.removeEventListener('mouseup', windowMouseUp);
+      window.removeEventListener('touchstart', windowMouseDown);
+      window.removeEventListener('touchmove', windowMouseDrag);
+      window.removeEventListener('touchend', windowMouseUp);
     };
   });
 

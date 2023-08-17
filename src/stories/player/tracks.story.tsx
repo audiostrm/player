@@ -2,7 +2,6 @@ import { Meta, StoryFn } from '@storybook/react';
 import { Player } from '../../player';
 import { PlayerProvider, usePlayer } from '../..';
 import React from 'react';
-import chunks from './data';
 import { AudioType } from '@/context/audio-context';
 
 export default {
@@ -14,11 +13,11 @@ const Tracks = () => {
   const { setAudio } = usePlayer();
   const tracks: AudioType[] = [
     {
-      id: 'clku8zvb30001mc0kr4x3phnw',
+      url: 'https://audiostream-testing.s3.eu-north-1.amazonaws.com/y2mate.is+-+Lady+Gaga+Bloody+Mary+Official+Audio+-VFwmKL5OL-Q-192k-1692216807.mp3',
       artist: 'Lady gaga',
       title: 'Bloody mary',
-      preChunk: chunks.preChunk,
       duration: 244,
+      id: 'asdasd',
       image: 'https://i.scdn.co/image/ab67616d0000b273a47c0e156ea3cebe37fdcab8',
     },
     // {
@@ -33,7 +32,7 @@ const Tracks = () => {
   return (
     <>
       {tracks.map((track) => (
-        <button onClick={() => setAudio(track)} key={track.id}>
+        <button onClick={() => setAudio(track)} key={track.url}>
           {track.title}
         </button>
       ))}
