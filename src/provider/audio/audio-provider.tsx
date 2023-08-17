@@ -19,7 +19,9 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   });
 
   const updateCurrentTime = () => {
-    setCurrentTime(audio.current!.currentTime);
+    if (audio.current) {
+      setCurrentTime(audio.current.currentTime);
+    }
   };
 
   useEffect(() => {
@@ -45,11 +47,13 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     }
 
     setAudioInfo(parseLastAudio);
-    audio.current!.src = parseLastAudio.url;
+    if (audio.current) {
+      audio.current.src = parseLastAudio.url;
+    }
     const numerizeLastStopped = Number(parseLastAudio.lastStopped);
     if (!isNaN(numerizeLastStopped)) {
       setCurrentTime(numerizeLastStopped);
-      audio.current!.currentTime = numerizeLastStopped;
+      audio.current.currentTime = numerizeLastStopped;
     }
   }, []);
 
@@ -66,11 +70,15 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   function volumeChange(volume: `${number}%`) {
     const pureNumber = Number(volume.replace('%', ''));
     volumeValue.current = pureNumber / 100;
-    audio.current!.volume = pureNumber / 100;
+    if (audio.current) {
+      audio.current.volume = pureNumber / 100;
+    }
   }
 
   const seek = (seekTime: number) => {
-    audio.current!.currentTime = seekTime;
+    if (audio.current) {
+      audio.current.currentTime = seekTime;
+    }
   };
 
   async function remotelyLoad(
@@ -107,7 +115,9 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
       playlistRef.current = playlistId;
     }
 
-    audio.current!.src = newTrack.url as string;
+    if (audio.current) {
+      audio.current.src = newTrack.url as string;
+    }
     setAudioInfo(newTrack);
     setCurrentTime(0);
   }
