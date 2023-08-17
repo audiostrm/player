@@ -19,8 +19,8 @@ export const AudioDemoProvider = ({ children }: React.PropsWithChildren) => {
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [audio, setAudio] = useState<AudioType>({
     duration: 0,
-    url: "",
-
+    url: '',
+    id: ''
   });
 
   function resetTime() {}
@@ -206,12 +206,12 @@ export const AudioDemoProvider = ({ children }: React.PropsWithChildren) => {
         audio,
         currentTime,
         handlePlaying,
-        isEnded,
         loading,
         playing,
-        resetTime,
         seek,
         setAudio: remotelyLoad,
+        audioNode: new Audio(),
+        setCurrentTime: () => {},
         // setCurrentTime,
         volumeChange,
         // ctx: ctx.current,

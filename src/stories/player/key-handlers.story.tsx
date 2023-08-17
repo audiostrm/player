@@ -20,7 +20,7 @@ const Template: StoryFn<typeof Player> = () => {
       title: 'Only Love Can Save Us Now',
       id: 'clk9wgf070007mc0k7rv23xok',
       duration: 0,
-      preChunk: '',
+      url: ''
     });
   }, []);
 

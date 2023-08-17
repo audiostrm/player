@@ -6,7 +6,7 @@ type CurrentTimeWidthType = {
 export const currentTimeWidth = ({
   currentTime,
   duration,
-}: CurrentTimeWidthType): `${number}%` => {  
+}: CurrentTimeWidthType): `${number}%` => {
   if (!duration) {
     return '0%';
   }

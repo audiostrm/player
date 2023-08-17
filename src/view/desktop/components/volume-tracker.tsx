@@ -42,7 +42,7 @@ export const VolumeTracker = () => {
   };
 
   const mouseUp = (e: MouseEvent) => {
-    if(isPressed.current){
+    if (isPressed.current) {
       const volume = volumeWidth(volumeRef, e.clientX);
       localStorage.setItem(PLAYERSTORAGE.VOLUME, JSON.stringify(volume));
       isPressed.current = false;
