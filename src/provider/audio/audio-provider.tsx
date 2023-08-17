@@ -5,7 +5,7 @@ import { LastAudioLocalType } from './types';
 import { isAudioType } from './utils/is-audio-type';
 
 export const AudioProvider = ({ children }: React.PropsWithChildren) => {
-  const audio = useRef<HTMLAudioElement>(new Audio());
+  const audio = useRef<HTMLAudioElement>();
   const volumeValue = useRef<number>(0.8);
   const [loading] = useState(false);
   const [playing, setPlaying] = useState(false);
@@ -32,6 +32,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   }, [audioInfo, currentTime]);
 
   useEffect(() => {
+    audio.current = new Audio();
     const localLastAudio = localStorage.getItem(PLAYERSTORAGE.LAST_AUDIO);
 
     if (!localLastAudio) return;
@@ -53,12 +54,12 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   }, []);
 
   useEffect(() => {
-    audio.current!.addEventListener('timeupdate', updateCurrentTime);
-    audio.current!.addEventListener('loadedmetadata', play);
+    audio.current?.addEventListener('timeupdate', updateCurrentTime);
+    audio.current?.addEventListener('loadedmetadata', play);
 
     return () => {
-      audio.current!.removeEventListener('timeupdate', updateCurrentTime);
-      audio.current!.removeEventListener('loadedmetadata', play);
+      audio.current?.removeEventListener('timeupdate', updateCurrentTime);
+      audio.current?.removeEventListener('loadedmetadata', play);
     };
   });
 
@@ -118,12 +119,12 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
 
     const isPlaying =
       audio.current!.currentTime > 0 &&
-      !audio.current!.paused &&
-      !audio.current!.ended &&
+      !audio.current?.paused &&
+      !audio.current?.ended &&
       audio.current!.readyState > audio.current!.HAVE_CURRENT_DATA;
 
     if (!isPlaying) {
-      audio.current!.play();
+      audio.current?.play();
     }
   }
 
@@ -131,7 +132,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     isInteracted.current = true;
     if (playing) {
       setPlaying(false);
-      audio.current!.pause();
+      audio.current?.pause();
     } else {
       play();
       setPlaying(true);
@@ -143,7 +144,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
       value={{
         seek,
         setCurrentTime,
-        audioNode: audio.current!,
+        audioNode: audio.current,
         handlePlaying,
         audio: audioInfo,
         currentTime,

@@ -33,7 +33,6 @@ export const AudioContext = React.createContext<AudioContextProps>({
   seek: () => {},
   volumeChange: () => {},
   loading: false,
-  audioNode: new Audio(),
   currentTime: 0,
   setAudio: () => {},
   audio: {
