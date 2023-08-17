@@ -20,7 +20,7 @@ export const AudioDemoProvider = ({ children }: React.PropsWithChildren) => {
   const [audio, setAudio] = useState<AudioType>({
     duration: 0,
     url: '',
-    id: ''
+    id: '',
   });
 
   function resetTime() {}
