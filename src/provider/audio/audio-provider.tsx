@@ -57,13 +57,19 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     }
   }, []);
 
+  const onEnded = () => {
+    setPlaying(false);
+  };
+
   useEffect(() => {
     audio.current?.addEventListener('timeupdate', updateCurrentTime);
     audio.current?.addEventListener('loadedmetadata', play);
+    audio.current?.addEventListener('ended', onEnded);
 
     return () => {
       audio.current?.removeEventListener('timeupdate', updateCurrentTime);
       audio.current?.removeEventListener('loadedmetadata', play);
+      audio.current?.removeEventListener('ended', onEnded);
     };
   });
 
