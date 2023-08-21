@@ -64,7 +64,7 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
       if (isNaN(parseVolume)) return;
 
       if (parseVolume >= 0 && parseVolume <= 100) {
-        audio.current.volume = parseVolume / 100
+        audio.current.volume = parseVolume / 100;
       }
     }
   }, []);

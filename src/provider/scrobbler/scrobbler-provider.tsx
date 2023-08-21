@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useAudio } from '@/provider/audio/hooks/useAudio';
 import { ScrobbleType } from '@/types/scrobble.types';
 import { useContext, useEffect, useRef } from 'react';

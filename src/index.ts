@@ -1,4 +1,4 @@
 export { Player } from './player';
 export { PlayerProvider } from './provider';
 export { usePlayer } from './hooks/usePlayer';
-export { useScrobble } from './provider/scrobbler';
+export { ScrobblerProvider } from './provider/scrobbler';
