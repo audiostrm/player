@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePlayer } from '@/hooks/usePlayer';
+import { usePlayer } from '@/hooks/usePlayer/usePlayer';
 import { PauseIcon } from '@/icons/pause';
 import { PlayIcon } from '@/icons/play';
 import { useAudio } from '@/provider/audio/hooks/useAudio';

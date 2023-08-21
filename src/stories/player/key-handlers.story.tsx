@@ -2,7 +2,7 @@ import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { Player } from '../../player';
 import { PlayerProvider } from '@/provider';
-import { usePlayer } from '@/hooks/usePlayer';
+import { usePlayer } from '@/hooks/usePlayer/usePlayer';
 
 export default {
   title: 'Player',

@@ -61,15 +61,27 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     setPlaying(false);
   };
 
+  const onPlay = () => {
+    setPlaying(true);
+  };
+
+  const onPause = () => {
+    setPlaying(false);
+  };
+
   useEffect(() => {
     audio.current?.addEventListener('timeupdate', updateCurrentTime);
     audio.current?.addEventListener('loadedmetadata', play);
     audio.current?.addEventListener('ended', onEnded);
+    audio.current?.addEventListener('play', onPlay);
+    audio.current?.addEventListener('pause', onPause);
 
     return () => {
       audio.current?.removeEventListener('timeupdate', updateCurrentTime);
       audio.current?.removeEventListener('loadedmetadata', play);
       audio.current?.removeEventListener('ended', onEnded);
+      audio.current?.removeEventListener('play', onPlay);
+      audio.current?.removeEventListener('pause', onPause);
     };
   });
 
