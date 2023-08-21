@@ -55,6 +55,18 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
       setCurrentTime(numerizeLastStopped);
       audio.current.currentTime = numerizeLastStopped;
     }
+
+    const volumeLocal = localStorage.getItem(PLAYERSTORAGE.VOLUME);
+
+    if (volumeLocal) {
+      const parseVolume = parseFloat(JSON.parse(volumeLocal));
+
+      if (isNaN(parseVolume)) return;
+
+      if (parseVolume >= 0 && parseVolume <= 100) {
+        audio.current.volume = parseVolume / 100
+      }
+    }
   }, []);
 
   const onEnded = () => {

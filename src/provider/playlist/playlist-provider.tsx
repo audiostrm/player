@@ -12,7 +12,7 @@ export const PlaylistProvider = ({ children }: React.PropsWithChildren) => {
   const { audio: track, setAudio, audioNode } = useContext(AudioContext);
   const { playlist, setPlaylist } = usePlaylist();
   const [loopStatus, setLoopStatus] = React.useState<LoopStatusType>('none');
-  const [isShuffle, setIsShuffle] = React.useState<boolean>(false);  
+  const [isShuffle, setIsShuffle] = React.useState<boolean>(false);
 
   const trackIndex = useMemo(() => {
     const audioIndex = playlist.audios.findIndex(
