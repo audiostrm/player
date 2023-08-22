@@ -1,4 +1,4 @@
-import { usePlayer } from '@/hooks/usePlayer';
+import { usePlayer } from '@/hooks/usePlayer/usePlayer';
 import React from 'react';
 
 export const Image = () => {

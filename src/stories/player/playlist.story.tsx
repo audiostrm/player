@@ -14,22 +14,31 @@ const Playlist: StoryFn<typeof Player> = () => {
 
   const tracks: AudioType[] = [
     {
-      url: 'https://audiostream-testing.s3.eu-north-1.amazonaws.com/y2mate.is+-+LADY+GAGA+BEYONCE%CC%81+G.U.Y.+x+HEATED+MASHUP+-1RIdG-e0-xM-192k-1692219955.mp3',
-      id: 'clj9cqopz0001kz088arksp9s',
-      artist: 'AdamMusic',
-      title: 'LADY GAGA, BEYONCÉ - G.U.Y. x HEATED (MASHUP)',
-      duration: 272.856,
+      url: 'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/cllfsksou0007mc0kyoiz2i2t/audio/4c14c8b03e0abe75.mp3',
+      duration: 173,
+      title: '911',
+      artist: 'Lady Gaga',
       image:
-        'https://cdn.discordapp.com/attachments/1072505285580697712/1121805560585654282/image.png',
+        'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/cllfsksou0007mc0kyoiz2i2t/image/827d888d-c833-4433-b3d2-89cadbdbcb8a',
+      id: 'cllfsksou0007mc0kyoiz2i2t',
     },
     {
-      id: '1',
-      url: 'https://audiostream-testing.s3.eu-north-1.amazonaws.com/Sia+-+Elastic+Heart+(Audio).mp3',
-      artist: 'Sia',
+      url: 'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/cllfsi1hv0005mc0k0o8tpup6/audio/74c5e43a2b190195.mp3',
+      duration: 42,
+      title: 'Chromatica II',
+      artist: 'Lady Gaga',
       image:
-        'https://upload.wikimedia.org/wikipedia/en/thumb/9/99/Sia_-_Elastic-Heart%2C_2015.png/220px-Sia_-_Elastic-Heart%2C_2015.png',
-      title: 'Plastic Heart',
-      duration: 250.2,
+        'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/cllfsi1hv0005mc0k0o8tpup6/image/3857bf90-62cd-4db2-8cb5-524c060dbd3b',
+      id: 'cllfsi1hv0005mc0k0o8tpup6',
+    },
+    {
+      url: 'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/cllfsp1aj000bmc0kzjmoyuja/audio/7ca7ec1c91fbabf6.mp3',
+      duration: 158,
+      title: 'Sour Candy',
+      artist: 'Lady Gaga & BLACKPINK',
+      image:
+        'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/cllfsp1aj000bmc0kzjmoyuja/image/6e832264-da61-4e4d-8703-610933e2f4ea',
+      id: 'cllfsp1aj000bmc0kzjmoyuja',
     },
   ];
 
@@ -38,38 +47,37 @@ const Playlist: StoryFn<typeof Player> = () => {
       id: 'playlist #1',
       audios: tracks,
       preAudio: {
-        url: 'https://audiostream-testing.s3.eu-north-1.amazonaws.com/y2mate.is+-+LADY+GAGA+BEYONCE%CC%81+G.U.Y.+x+HEATED+MASHUP+-1RIdG-e0-xM-192k-1692219955.mp3',
-        id: 'clj9cqopz0001kz088arksp9s',
-        artist: 'AdamMusic',
-        duration: 272.856,
-        title: 'LADY GAGA, BEYONCÉ - G.U.Y. x HEATED (MASHUP)',
+        url: 'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/cllfsksou0007mc0kyoiz2i2t/audio/4c14c8b03e0abe75.mp3',
+        duration: 173,
+        title: '911',
+        artist: 'Lady Gaga',
         image:
-          'https://cdn.discordapp.com/attachments/1072505285580697712/1121805560585654282/image.png',
+          'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/cllfsksou0007mc0kyoiz2i2t/image/827d888d-c833-4433-b3d2-89cadbdbcb8a',
+        id: 'cllfsksou0007mc0kyoiz2i2t',
       },
     },
     {
       id: 'playlist #2',
       audios: [
         {
-          id: 'clk9wgf070007mc0k7rv23xok',
-          artist: 'Kesha',
-          title: 'Tiktok',
-          url: 'https://cdns-preview-5.dzcdn.net/stream/c-53493734be9639a325b9eb8fcea1f81a-7.mp3',
-          duration: 30,
+          url: 'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/cllfz63o4000hmc0kenl7anmf/audio/f8df19578c90921d.mp3',
+          duration: 189,
+          title: 'Applause (speed up)',
+          artist: 'Lady Gaga',
           image:
-            'https://upload.wikimedia.org/wikipedia/en/thumb/7/7e/TiK_ToK_-_Kesha_%28official_single_cover%29.JPG/220px-TiK_ToK_-_Kesha_%28official_single_cover%29.JPG',
+            'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/cllfz63o4000hmc0kenl7anmf/image/0c83ef57-9d4f-4762-805c-c985f1deeea4',
+          id: 'cllfz63o4000hmc0kenl7anmf',
         },
         ...tracks,
       ],
       preAudio: {
-        url: 'https://cdns-preview-5.dzcdn.net/stream/c-53493734be9639a325b9eb8fcea1f81a-7.mp3',
-        id: 'clk9wgf070007mc0k7rv23xok',
-        artist: 'Kesha',
-        title: 'Tiktok',
-        preChunk: '',
-        duration: 30,
+        url: 'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/cllfz63o4000hmc0kenl7anmf/audio/f8df19578c90921d.mp3',
+        duration: 189,
+        title: 'Applause (speed up)',
+        artist: 'Lady Gaga',
         image:
-          'https://upload.wikimedia.org/wikipedia/en/thumb/7/7e/TiK_ToK_-_Kesha_%28official_single_cover%29.JPG/220px-TiK_ToK_-_Kesha_%28official_single_cover%29.JPG',
+          'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/cllfz63o4000hmc0kenl7anmf/image/0c83ef57-9d4f-4762-805c-c985f1deeea4',
+        id: 'cllfz63o4000hmc0kenl7anmf',
       },
     },
   ];

@@ -55,9 +55,29 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
       setCurrentTime(numerizeLastStopped);
       audio.current.currentTime = numerizeLastStopped;
     }
+
+    const volumeLocal = localStorage.getItem(PLAYERSTORAGE.VOLUME);
+
+    if (volumeLocal) {
+      const parseVolume = parseFloat(JSON.parse(volumeLocal));
+
+      if (isNaN(parseVolume)) return;
+
+      if (parseVolume >= 0 && parseVolume <= 100) {
+        audio.current.volume = parseVolume / 100;
+      }
+    }
   }, []);
 
   const onEnded = () => {
+    setPlaying(false);
+  };
+
+  const onPlay = () => {
+    setPlaying(true);
+  };
+
+  const onPause = () => {
     setPlaying(false);
   };
 
@@ -65,11 +85,15 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
     audio.current?.addEventListener('timeupdate', updateCurrentTime);
     audio.current?.addEventListener('loadedmetadata', play);
     audio.current?.addEventListener('ended', onEnded);
+    audio.current?.addEventListener('play', onPlay);
+    audio.current?.addEventListener('pause', onPause);
 
     return () => {
       audio.current?.removeEventListener('timeupdate', updateCurrentTime);
       audio.current?.removeEventListener('loadedmetadata', play);
       audio.current?.removeEventListener('ended', onEnded);
+      audio.current?.removeEventListener('play', onPlay);
+      audio.current?.removeEventListener('pause', onPause);
     };
   });
 
