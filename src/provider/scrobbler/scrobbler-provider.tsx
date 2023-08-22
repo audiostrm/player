@@ -6,7 +6,7 @@ import { calculateStream } from './utils/calculateStream';
 import { PlaylistContext } from '@/context/playlist-context';
 import { mergeSeconds } from './utils/mergeSeconds';
 
-type ScrobblerProps = {
+export type ScrobblerProps = {
   onPlaylistScrobble: (props: ScrobbleType) => void;
   onAudioScrobble: (props: ScrobbleType) => void;
 };

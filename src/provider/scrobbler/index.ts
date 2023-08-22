@@ -1,1 +1,1 @@
-export { ScrobblerProvider } from './scrobbler-provider';
+export { ScrobblerProvider, type ScrobblerProps } from './scrobbler-provider';
