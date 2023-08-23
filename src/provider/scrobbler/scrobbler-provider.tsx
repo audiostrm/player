@@ -25,12 +25,12 @@ export const ScrobblerProvider = ({
   const playlistPlaybacks = useRef<number[]>([]);
 
   const audioScrobbleTrigger = () => {
-    const { streamedSeconds, percent } = calculateStream(
+    const { streamedSeconds } = calculateStream(
       prevAudio.current.duration,
       audioPlaybacks.current
     );
 
-    if (percent >= 75) {
+    if (streamedSeconds >= 30) {
       onAudioScrobble({ id: audio.id, streamedSeconds });
     }
 
