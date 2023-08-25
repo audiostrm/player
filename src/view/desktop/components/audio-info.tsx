@@ -11,7 +11,7 @@ export const Image = () => {
       </div>
       <summary>
         <p className="audio-title">{audio.title}</p>
-        <p className="audio-artist">{audio.artist}</p>
+        <p className="audio-artist">{audio.uploader?.name}</p>
       </summary>
     </div>
   );

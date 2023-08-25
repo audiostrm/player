@@ -1,12 +1,14 @@
 import React from 'react';
 
 export type AudioType = {
-  url: string;
+  image?: string;
   id: string;
-  image?: string | null;
   title?: string;
-  artist?: string | null;
   duration: number;
+  url: string;
+  uploader?: {
+    name: string;
+  };
 };
 
 export type AudioContextProps = {

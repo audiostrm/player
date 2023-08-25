@@ -17,7 +17,9 @@ const Scrobbling = () => {
       url: 'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/cllfsksou0007mc0kyoiz2i2t/audio/4c14c8b03e0abe75.mp3',
       duration: 173,
       title: '911',
-      artist: 'Lady Gaga',
+      uploader: {
+        name: 'Lady Gaga & BLACKPINK'
+      },
       image:
         'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/cllfsksou0007mc0kyoiz2i2t/image/827d888d-c833-4433-b3d2-89cadbdbcb8a',
       id: 'cllfsksou0007mc0kyoiz2i2t',

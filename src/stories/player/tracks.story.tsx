@@ -14,7 +14,9 @@ const Tracks = () => {
   const tracks: AudioType[] = [
     {
       url: 'https://audiostream-testing.s3.eu-north-1.amazonaws.com/y2mate.is+-+Lady+Gaga+Bloody+Mary+Official+Audio+-VFwmKL5OL-Q-192k-1692216807.mp3',
-      artist: 'Lady gaga',
+      uploader: {
+        name: 'Lady Gaga & BLACKPINK',
+      },
       title: 'Bloody mary',
       duration: 244,
       id: 'asdasd',

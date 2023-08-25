@@ -16,7 +16,9 @@ const Template: StoryFn<typeof Player> = () => {
     setAudio({
       image:
         'https://media.pitchfork.com/photos/6447ec0b3749aeb5b27f047c/1:1/w_600/Kesha-Gag-Order.jpg',
-      artist: 'Kesha',
+      uploader: {
+        name: 'Lady Gaga & BLACKPINK',
+      },
       title: 'Only Love Can Save Us Now',
       id: 'clk9wgf070007mc0k7rv23xok',
       duration: 0,
