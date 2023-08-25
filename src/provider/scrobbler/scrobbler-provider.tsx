@@ -31,7 +31,7 @@ export const ScrobblerProvider = ({
     );
 
     if (streamedSeconds >= 30) {
-      onAudioScrobble({ id: audio.id, streamedSeconds });
+      onAudioScrobble({ id: audio.id as string, streamedSeconds });
     }
 
     startTime.current = Date.now();

@@ -2,7 +2,7 @@ import React from 'react';
 
 export type AudioType = {
   image?: string | null;
-  id: string | null; 
+  id: string | null;
   title?: string | null;
   duration: number;
   url: string;
