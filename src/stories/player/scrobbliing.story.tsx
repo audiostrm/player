@@ -18,7 +18,7 @@ const Scrobbling = () => {
       duration: 173,
       title: '911',
       uploader: {
-        name: 'Lady Gaga & BLACKPINK'
+        name: 'Lady Gaga & BLACKPINK',
       },
       image:
         'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/cllfsksou0007mc0kyoiz2i2t/image/827d888d-c833-4433-b3d2-89cadbdbcb8a',

@@ -18,7 +18,7 @@ const Playlist: StoryFn<typeof Player> = () => {
       duration: 173,
       title: '911',
       uploader: {
-        name: 'Lady Gaga & BLACKPINK'
+        name: 'Lady Gaga & BLACKPINK',
       },
       image:
         'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/cllfsksou0007mc0kyoiz2i2t/image/827d888d-c833-4433-b3d2-89cadbdbcb8a',
@@ -29,7 +29,7 @@ const Playlist: StoryFn<typeof Player> = () => {
       duration: 42,
       title: 'Chromatica II',
       uploader: {
-        name: 'Lady Gaga & BLACKPINK'
+        name: 'Lady Gaga & BLACKPINK',
       },
       image:
         'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/cllfsi1hv0005mc0k0o8tpup6/image/3857bf90-62cd-4db2-8cb5-524c060dbd3b',
@@ -40,7 +40,7 @@ const Playlist: StoryFn<typeof Player> = () => {
       duration: 158,
       title: 'Sour Candy',
       uploader: {
-        name: 'Lady Gaga & BLACKPINK'
+        name: 'Lady Gaga & BLACKPINK',
       },
       image:
         'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/cllfsp1aj000bmc0kzjmoyuja/image/6e832264-da61-4e4d-8703-610933e2f4ea',
