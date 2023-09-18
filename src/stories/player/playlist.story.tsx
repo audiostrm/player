@@ -43,7 +43,7 @@ const Playlist: StoryFn<typeof Player> = () => {
         name: 'Lady Gaga & BLACKPINK',
       },
       image:
-        'https://audiostreamfiles.s3.eu-central-1.amazonaws.com/cllfsp1aj000bmc0kzjmoyuja/image/6e832264-da61-4e4d-8703-610933e2f4ea',
+        'https://audiostream-files.s3.eu-central-1.amazonaws.com/clmo74wdv0001mc0k5ktfco36/image/b061ac28-b270-4a2c-a81b-f59ef76075fc',
       id: 'cllfsp1aj000bmc0kzjmoyuja',
     },
   ];

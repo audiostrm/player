@@ -13,7 +13,7 @@ const Tracks = () => {
   const { setAudio } = usePlayer();
   const tracks: AudioType[] = [
     {
-      url: 'https://audiostream-testing.s3.eu-north-1.amazonaws.com/y2mate.is+-+Lady+Gaga+Bloody+Mary+Official+Audio+-VFwmKL5OL-Q-192k-1692216807.mp3',
+      url: 'https://audiostream-files.s3.eu-central-1.amazonaws.com/clmo74wdv0001mc0k5ktfco36/image/b061ac28-b270-4a2c-a81b-f59ef76075fc',
       uploader: {
         name: 'Lady Gaga & BLACKPINK',
       },
