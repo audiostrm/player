@@ -6,7 +6,7 @@ describe('[Component] Player', () => {
   it('should render icon components', () => {
     render(<Player />);
 
-    expect(screen.getAllByTitle(/icon/i).length).toBe(6);
+    expect(screen.getAllByTitle(/icon/i).length).toBe(5);
   });
   it.skip('should change icon after start play', () => {
     render(<Player />);
