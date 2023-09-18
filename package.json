@@ -1,7 +1,7 @@
 {
   "name": "@audiostreamhq/player",
   "description": "buffer streaming supported audio player 🔊",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "author": "callmenikk",
   "license": "MIT",
   "keywords": [],
