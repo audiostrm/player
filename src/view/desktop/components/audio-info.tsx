@@ -7,7 +7,11 @@ export const Image = () => {
   return (
     <div className="audio-info">
       <div className="image-wrapper">
-        {audio.image && <img src={audio.image as string} draggable={false} />}
+        <img
+          src={audio.image as string}
+          draggable={false}
+          className={audio.image ? '' : 'hidden'}
+        />
       </div>
       <summary>
         <p className="audio-title">{audio.title}</p>
