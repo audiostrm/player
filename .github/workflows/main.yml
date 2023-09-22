@@ -16,8 +16,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up Node
-        uses: actions/setup-node@v3
+      - name: Set up Bun
+      - uses: oven-sh/setup-bun@v1
         with:
           node-version: lts/*
 
@@ -25,10 +25,10 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: Check types
-        run: yarn type-check
+        run: bun run type-check
 
       - name: Check linting
-        run: yarn lint
+        run: bun run lint
 
       - name: Build package
-        run: yarn build
+        run: bun run build
