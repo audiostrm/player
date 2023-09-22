@@ -9,6 +9,9 @@
     "type": "git",
     "url": "https://github.com/audiostreamhq/player"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "dev": "tsup --watch",
     "build": "rm -rf ./src/index.css.map && tsup",
