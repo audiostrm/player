@@ -7,7 +7,7 @@ export const VolumeTracker = () => {
   const volumeRef = useRef<HTMLDivElement>(null);
   const isPressed = useRef<boolean>(false);
   const { volumeChange } = useAudio();
-  const [volume, setVolume] = useState<`${number}%`>('80%');
+  const [volume, setVolume] = useState<`${number}%`>('100%');
 
   useEffect(() => {
     const volumeLocal = localStorage.getItem(PLAYERSTORAGE.VOLUME);
