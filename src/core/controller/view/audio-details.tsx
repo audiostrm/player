@@ -24,7 +24,7 @@ export const AudioDetails = () => {
           {audio.uploader?.name}
         </span>
       </div>
-      <div className="text-xs text-white/75 place-items-end mb-3 flex flex-none">
+      <div className="text-xs text-slate-400 place-items-end mb-3 flex flex-none">
         {isPressed
           ? formatSeconds(beforeReleaseTime)
           : formatSeconds(currentTime)}{' '}
