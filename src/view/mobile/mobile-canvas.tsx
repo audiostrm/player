@@ -20,7 +20,7 @@ export const MobileCanvas = () => {
             {audio.uploader?.name}
           </div>
         </div>
-        <PlayerButton className='absolute right-3 mt-1'/>
+        <PlayerButton className="absolute right-3 mt-1" />
       </div>
     </div>
   );

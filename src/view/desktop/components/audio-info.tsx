@@ -27,6 +27,11 @@ export const Image = () => {
   }, [audio]);
 
   return (
-    <div className='cursor-pointer' onClick={() => onAudioNavigate(audio.id as string)}>{RenderImage}</div>
+    <div
+      className="cursor-pointer"
+      onClick={() => onAudioNavigate(audio.id as string)}
+    >
+      {RenderImage}
+    </div>
   );
 };

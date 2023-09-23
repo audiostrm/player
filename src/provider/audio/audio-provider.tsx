@@ -12,7 +12,7 @@ type AudioProviderProps = {
 export const AudioProvider = ({
   children,
   onUsernameNavigate,
-  onAudioNavigate
+  onAudioNavigate,
 }: React.PropsWithChildren<AudioProviderProps>) => {
   const audio = useRef<HTMLAudioElement>();
   const volumeValue = useRef<number>(0.8);
