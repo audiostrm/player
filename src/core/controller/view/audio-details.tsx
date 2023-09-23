@@ -18,7 +18,7 @@ export const AudioDetails = () => {
           {audio.title}
         </span>
         <span
-          className="text-xs text-slate hover:underline max-w-[180px] truncate ... cursor-pointer mb-3"
+          className="text-xs text-slate-500 hover:underline max-w-[180px] truncate ... cursor-pointer mb-3"
           onClick={() => onUsernameNavigate(audio.uploader?.name as string)}
         >
           {audio.uploader?.name}
