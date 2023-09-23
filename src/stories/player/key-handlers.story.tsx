@@ -36,7 +36,7 @@ const Template: StoryFn<typeof Player> = () => {
 
 const Wrapper = () => {
   return (
-    <PlayerProvider>
+    <PlayerProvider onUsernameNavigate={() => {}} onAudioNavigate={() => {}}>
       <Template />
     </PlayerProvider>
   );

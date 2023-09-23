@@ -4,8 +4,9 @@ import { PauseIcon } from '@/icons/pause';
 import { PlayIcon } from '@/icons/play';
 import { useAudio } from '@/provider/audio/hooks/useAudio';
 import { useSpace } from '../hooks/useSpace';
+import { cn } from '@/lib/utils';
 
-export const PlayerButton = () => {
+export const PlayerButton = ({ className }: { className?: string }) => {
   const { togglePlay, isPlaying, loading } = useAudio();
   const { audio } = usePlayer();
   useSpace();
@@ -16,7 +17,10 @@ export const PlayerButton = () => {
 
   return (
     <button
-      className="controller-play-button"
+      className={cn(
+        'bg-white rounded-full w-10 flex items-center justify-center h-10',
+        className
+      )}
       disabled={!audio.url}
       onClick={() => togglePlay()}
     >

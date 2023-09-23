@@ -6,7 +6,7 @@ export const ForwardButton = () => {
   const { forwardAudio } = useContext(PlaylistContext);
 
   return (
-    <div className="side-controller-button" onClick={forwardAudio}>
+    <div className="rounded-full hover:bg-white/20 w-8 h-8 pl-0.5 flex-none flex items-center justify-center" onClick={forwardAudio}>
       <ForwardIcon />
     </div>
   );

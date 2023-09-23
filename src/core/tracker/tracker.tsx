@@ -1,53 +1,79 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Indicator } from './components/indicator';
-import { trackerGap } from './utils/tracker-gap';
 import { trackerWidth } from './utils/tracker-width';
 import { useAudio } from '@/provider/audio/hooks/useAudio';
 import { useSeek } from './hooks/useSeek';
 import { currentTimeWidth } from './utils/current-time-width';
+import { cn } from '@/lib/utils';
 
-export const Tracker = () => {
+type TrackerProps = {
+  className?: string;
+};
+
+export const Tracker = ({ className }: TrackerProps) => {
   const trackerRef = useRef<HTMLDivElement>(null);
-  const [pressed, setPressed] = useState(false);
+  const trackerX = useRef<number>(0);
   const [tracker, setTracker] = useState<`${number}%`>('0%');
-  const { seek: seeker, duration, currentTime, setCurrentTime } = useAudio();
+  const {
+    seek: seeker,
+    duration,
+    currentTime,
+    setCurrentTime,
+    setBeforeReleaseTime,
+    isPressed,
+    setIsPressed,
+  } = useAudio();
   const { seek } = useSeek({ duration, tracker });
 
   const trackerTime = useMemo(() => {
-    if (pressed) {
+    if (isPressed) {
       return tracker;
     }
 
     return currentTimeWidth({ currentTime, duration });
-  }, [currentTime, duration, pressed, tracker]);
+  }, [currentTime, duration, isPressed, tracker]);
 
   const windowMouseDown = (e: MouseEvent | TouchEvent) => {
     if (trackerRef.current && trackerRef.current.contains(e.target as Node)) {
+      trackerX.current = trackerRef.current?.getBoundingClientRect()
+        .left as number;
+
       const trackerWidthPx = trackerWidth(
         trackerRef,
         ((e as MouseEvent).clientX || (e as TouchEvent).touches[0].clientX) -
-          trackerGap(trackerRef)
+          trackerX.current
       );
+
+      const removePercent = Number(trackerWidthPx.replace('%', ''));
+      const beforeReleaseSeconds = (removePercent / 100) * duration;
+
+      setBeforeReleaseTime(beforeReleaseSeconds);
+
       setTracker(trackerWidthPx);
-      setPressed(true);
+      setIsPressed(true);
     }
   };
 
   const windowMouseUp = () => {
-    if (pressed) {
+    if (isPressed) {
       setCurrentTime(seek);
       seeker(seek);
-      setPressed(false);
+      setIsPressed(false);
     }
   };
 
   const windowMouseDrag = (e: MouseEvent | TouchEvent) => {
-    if (pressed) {
+    if (isPressed) {
       const trackerWidthPx = trackerWidth(
         trackerRef,
         ((e as MouseEvent).clientX || (e as TouchEvent).touches[0].clientX) -
-          trackerGap(trackerRef)
+          trackerX.current
       );
+
+      const removePercent = Number(trackerWidthPx.replace('%', ''));
+      const beforeReleaseSeconds = (removePercent / 100) * duration;
+
+      setBeforeReleaseTime(beforeReleaseSeconds);
 
       setTracker(trackerWidthPx);
     }
@@ -73,9 +99,17 @@ export const Tracker = () => {
 
   return (
     <>
-      <div className="tracker-layer" ref={trackerRef} aria-label={tracker} />
-      <div className="tracker-wrapper">
-        <Indicator width={trackerTime} />
+      <div
+        className={cn(
+          'absolute group z-10 w-full h-2 translate-y-3 bottom-2',
+          className
+        )}
+        ref={trackerRef}
+        aria-label={tracker}
+      >
+        <div className="h-1 rounded-md w-full bg-slate relative">
+          <Indicator width={trackerTime} />
+        </div>
       </div>
     </>
   );

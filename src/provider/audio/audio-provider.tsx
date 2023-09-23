@@ -4,12 +4,23 @@ import { PLAYERSTORAGE } from '@/constant/keys';
 import { LastAudioLocalType } from './types';
 import { isAudioType } from './utils/is-audio-type';
 
-export const AudioProvider = ({ children }: React.PropsWithChildren) => {
+type AudioProviderProps = {
+  onUsernameNavigate: (username: string) => void;
+  onAudioNavigate: (id: string) => void;
+};
+
+export const AudioProvider = ({
+  children,
+  onUsernameNavigate,
+  onAudioNavigate
+}: React.PropsWithChildren<AudioProviderProps>) => {
   const audio = useRef<HTMLAudioElement>();
   const volumeValue = useRef<number>(0.8);
   const [loading] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const [beforeReleaseTime, setBeforeReleaseTime] = useState(0);
   const playlistRef = useRef<string>('');
+  const [isPressed, setIsPressed] = useState(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const isInteracted = useRef(false);
   const [audioInfo, setAudioInfo] = useState<AudioType>({
@@ -182,6 +193,12 @@ export const AudioProvider = ({ children }: React.PropsWithChildren) => {
   return (
     <AudioContext.Provider
       value={{
+        onAudioNavigate,
+        isPressed,
+        setIsPressed,
+        beforeReleaseTime,
+        setBeforeReleaseTime,
+        onUsernameNavigate,
         seek,
         setCurrentTime,
         audioNode: audio.current,

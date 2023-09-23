@@ -12,7 +12,6 @@ export const AudioDemoProvider = ({ children }: React.PropsWithChildren) => {
   const gainNode = useRef<GainNode>();
   const totalChunks = useRef<number>(-1);
   const volumeValue = useRef<number>(0.8);
-  const [isEnded] = useState(false);
   const [loading] = useState(false);
   const [playing, setPlaying] = useState(false);
   const playlistRef = useRef<string>('');

@@ -1,20 +1,10 @@
-import React, { useContext } from 'react';
-import './styles/index.css';
-import { Tracker } from './core/tracker';
-import { View } from './view';
-import { AudioContext } from './context/audio-context';
+import React from 'react';
+import { useDeviceSize } from './view/hooks/useDeviceSize';
+import { MobileCanvas } from './view/mobile';
+import { DesktopCanvas } from './view/desktop';
 
 export const Player = () => {
-  const { audio } = useContext(AudioContext);
+  const { isMobile } = useDeviceSize();
 
-  return (
-    <div
-      className={
-        audio.id ? 'audiostream-player' : 'audiostream-player hidden-player'
-      }
-    >
-      <Tracker />
-      <View />
-    </div>
-  );
+  return isMobile ? <MobileCanvas /> : <DesktopCanvas />;
 };

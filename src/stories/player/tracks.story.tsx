@@ -13,28 +13,26 @@ const Tracks = () => {
   const { setAudio } = usePlayer();
   const tracks: AudioType[] = [
     {
-      url: 'https://audiostream-files.s3.eu-central-1.amazonaws.com/clmo74wdv0001mc0k5ktfco36/image/b061ac28-b270-4a2c-a81b-f59ef76075fc',
+      id: 'clmon6yse0003mc0k6bipntd0',
+      title: 'Lady gaga - Applause',
+      image:
+        'https://audiostream-files.s3.eu-central-1.amazonaws.com/clmon6yse0003mc0k6bipntd0/image/4681ffd9-046d-4aa2-b760-7d574f0df917',
+      url: 'https://audiostream-files.s3.eu-central-1.amazonaws.com/clmon6yse0003mc0k6bipntd0/audio/af7b27c5a068b164.mp3',
+      duration: 189,
       uploader: {
-        name: 'Lady Gaga & BLACKPINK',
+        name: 'yaviskokakola',
       },
-      title: 'Bloody mary',
-      duration: 244,
-      id: 'asdasd',
-      image: 'https://i.scdn.co/image/ab67616d0000b273a47c0e156ea3cebe37fdcab8',
     },
-    // {
-    //   id: 'cljacj88u0001l908w524gkqt',
-    //   artist: 'Alexandra Stan',
-    //   preChunk: chunks.preChunk,
-    //   image: 'https://avatars.githubusercontent.com/u/65135792?v=4?s=400',
-    //   title: 'Come Into My World',
-    // },
   ];
 
   return (
     <>
       {tracks.map((track) => (
-        <button onClick={() => setAudio(track)} key={track.url}>
+        <button
+          onClick={() => setAudio(track)}
+          className="text-white"
+          key={track.url}
+        >
           {track.title}
         </button>
       ))}
@@ -45,8 +43,10 @@ const Tracks = () => {
 
 const Wrapper = () => {
   return (
-    <PlayerProvider>
-      <Tracks />
+    <PlayerProvider onUsernameNavigate={() => {}} onAudioNavigate={() => {}}>
+      <div className="fixed bottom-3 w-full">
+        <Tracks />
+      </div>
     </PlayerProvider>
   );
 };

@@ -1,4 +1,5 @@
 import { PlayerProvider } from '../src/provider';
+import 'tailwindcss/tailwind.css';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },

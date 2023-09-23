@@ -4,7 +4,7 @@ import { VolumeTracker } from './volume-tracker';
 
 export const VolumeControl = () => {
   return (
-    <div className="volume-controls">
+    <div className="flex items-center gap-2 mr-2 ml-2 w-36">
       <VolumeHighIcon />
       <VolumeTracker />
     </div>

@@ -9,7 +9,7 @@ export const BackButton = () => {
 
   return (
     <div
-      className="side-controller-button"
+      className="rounded-full hover:bg-white/20 w-8 h-8 flex-none flex items-center justify-center pr-0.5"
       onClick={() => seek(0)}
       onDoubleClick={backAudio}
     >

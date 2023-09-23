@@ -111,7 +111,7 @@ const Scrobbling = () => {
 
 const Wrapper = () => {
   return (
-    <PlayerProvider>
+    <PlayerProvider onUsernameNavigate={() => {}} onAudioNavigate={() => {}}>
       <Scrobbling />
     </PlayerProvider>
   );

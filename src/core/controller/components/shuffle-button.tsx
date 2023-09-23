@@ -12,7 +12,7 @@ export const ShuffleButton = () => {
   // );
 
   return (
-    <div className="side-controller-button">
+    <div className='rounded-full hover:bg-white/20 w-6 h-6 flex items-center justify-center'>
       <ShuffleIcon color={'#868686'} />
     </div>
   );

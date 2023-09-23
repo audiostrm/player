@@ -1,20 +1,32 @@
+import { AudioContext } from '@/context/audio-context';
 import { usePlayer } from '@/hooks/usePlayer/usePlayer';
-import React from 'react';
+import React, { useContext, useMemo } from 'react';
 
 export const Image = () => {
   const { audio } = usePlayer();
+  const { onAudioNavigate } = useContext(AudioContext);
+
+  const RenderImage = useMemo(() => {
+    if (!audio.id) return <>haha</>;
+
+    if (audio.nextImage !== undefined) {
+      return audio.nextImage;
+    }
+
+    if (audio.image) {
+      return (
+        <div className="relative w-12 overflow-hidden h-12 rounded-md">
+          <img
+            src={audio.image as string}
+            draggable={false}
+            className="w-full h-full absolute object-cover"
+          />
+        </div>
+      );
+    }
+  }, [audio]);
 
   return (
-    <div className="audio-info">
-      {audio.id && (
-        <div className="image-wrapper">
-          <img src={audio.image as string} draggable={false} />
-        </div>
-      )}
-      <summary>
-        <p className="audio-title">{audio.title}</p>
-        <p className="audio-artist">{audio.uploader?.name}</p>
-      </summary>
-    </div>
+    <div className='cursor-pointer' onClick={() => onAudioNavigate(audio.id as string)}>{RenderImage}</div>
   );
 };

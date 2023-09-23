@@ -1,6 +1,7 @@
 import React from 'react';
 
 export type AudioType = {
+  nextImage?: JSX.Element;
   image?: string | null;
   id: string | null;
   title?: string | null;
@@ -18,6 +19,7 @@ export type AudioContextProps = {
   volumeChange: (volume: `${number}%`) => void;
   loading: boolean;
   currentTime: number;
+  isPressed: boolean;
   setAudio: (
     data: AudioType,
     playlistId?: string,
@@ -25,12 +27,23 @@ export type AudioContextProps = {
   ) => void;
   audioNode?: HTMLAudioElement;
   audio: AudioType;
+  beforeReleaseTime: number;
+  setBeforeReleaseTime: React.Dispatch<React.SetStateAction<number>>;
   setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
+  setIsPressed: React.Dispatch<React.SetStateAction<boolean>>;
+  onUsernameNavigate: (username: string) => void;
+  onAudioNavigate: (id: string) => void;
 };
 
 export const AudioContext = React.createContext<AudioContextProps>({
   playing: false,
+  onAudioNavigate: () => {},
+  onUsernameNavigate: () => {},
+  setIsPressed: () => {},
+  beforeReleaseTime: 0,
+  isPressed: false,
   setCurrentTime: () => {},
+  setBeforeReleaseTime: () => {},
   handlePlaying: () => {},
   seek: () => {},
   volumeChange: () => {},

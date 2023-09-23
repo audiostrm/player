@@ -1,21 +1,26 @@
 import React from 'react';
-import { IconType } from '@/types/icon.types';
 
-export const BackIcon = ({ color, size }: IconType) => {
+export const BackIcon = () => {
   return (
     <svg
+      fill="#FFF"
+      width="18"
+      height="18"
+      viewBox="0 0 32 32"
+      version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width={size || '20px'}
-      height={size || '20px'}
-      stroke={color || '#FFF'}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      transform="matrix(-1, 0, 0, -1, 0, 0)"
     >
-      <title>back-icon</title>
-      <polygon points="19 20 9 12 19 4 19 20"></polygon>
-      <line x1="5" y1="19" x2="5" y2="5" stroke="#FFF"></line>
+      <g id="SVGRepo_bgCarrier" strokeWidth="0" />
+
+      <g
+        id="SVGRepo_tracerCarrier"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <g id="SVGRepo_iconCarrier">
+        <path d="M0 24q0 0.544 0.288 1.056t0.768 0.736q0.48 0.256 1.056 0.224t0.992-0.32l12-8q0.896-0.608 0.896-1.696t-0.896-1.632l-12-8q-0.448-0.32-0.992-0.352t-1.056 0.224q-0.48 0.256-0.768 0.736t-0.288 1.024v16zM16 24q0 0.544 0.288 1.056t0.768 0.736q0.48 0.256 1.056 0.224t0.992-0.32l12-8q0.896-0.608 0.896-1.696t-0.896-1.632l-12-8q-0.448-0.32-0.992-0.352t-1.056 0.224q-0.48 0.256-0.768 0.736t-0.288 1.024v16z" />
+      </g>
     </svg>
   );
 };

@@ -14,8 +14,10 @@ export const LoopButton = () => {
   );
 
   return (
-    <div className="side-controller-button" onClick={toggleLoop}>
-      {loopStatus === 'single' && <div className="loop-dot" />}
+    <div className="flex items-center justify-center rounded-full hover:bg-white/20 w-6 h-6" onClick={toggleLoop}>
+      {loopStatus === 'single' && (
+        <div className="h-1 w-1 bg-blue rounded-full flex-none absolute" />
+      )}
       <LoopIcon color={loopIconColor} />
     </div>
   );
