@@ -14,7 +14,7 @@
   },
   "scripts": {
     "dev": "tsup --watch",
-    "build": "rm -rf ./src/index.css.map && tsup",
+    "build": "tsup",
     "type-check": "tsc",
     "lint": "eslint --ignore-path .gitignore \"{src,tests}/**/*.+(ts|js|tsx)\"",
     "lint:fix": "yarn lint --fix && prettier --write .",
@@ -23,7 +23,7 @@
     "sb": "storybook dev -p 6006 --quiet",
     "build-storybook": "storybook build",
     "deploy-storybook": "storybook-to-ghpages",
-    "release": "yarn build && yarn release-it"
+    "release": "bun run build && yarn release-it"
   },
   "types": "./dist/index.d.ts",
   "exports": {
