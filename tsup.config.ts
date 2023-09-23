@@ -10,4 +10,5 @@ export default defineConfig({
   splitting: false,
   format: ['cjs', 'esm'],
   external: ['react'],
+  
 });

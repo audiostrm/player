@@ -8,9 +8,9 @@ export const MobileCanvas = () => {
   const { audio } = useAudio();
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-black">
       <Tracker className="relative" />
-      <div className="flex pt-3 pl-2">
+      <div className="flex pt-3 pl-2 items-center">
         <Image />
         <div className="ml-3 flex flex-col justify-center">
           <div className="text-xs text-white truncate ... max-w-[180px] w-full">
