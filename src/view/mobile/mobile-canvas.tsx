@@ -8,12 +8,12 @@ export const MobileCanvas = () => {
   const { audio, onUsernameNavigate } = useAudio();
 
   return (
-    <div className="w-full bg-black">
+    <div className="w-full bg-white dark:bg-black">
       <Tracker className="relative" />
       <div className="flex py-3 pl-2 items-center">
         <Image />
         <div className="ml-3 flex flex-col justify-center">
-          <div className="text-xs text-white truncate ... max-w-[180px] w-full">
+          <div className="text-xs text-black dark:text-white truncate ... max-w-[180px] w-full">
             {audio.title}
           </div>
           <div
