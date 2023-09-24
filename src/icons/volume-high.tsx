@@ -3,7 +3,7 @@ import React from 'react';
 export const VolumeHighIcon = () => {
   return (
     <svg
-      className='fill-black dark:fill-white'
+      className="fill-black dark:fill-white"
       xmlns="http://www.w3.org/2000/svg"
       height="16"
       viewBox="0 0 640 512"
