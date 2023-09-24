@@ -3,8 +3,8 @@ import { PlaylistContext } from '@/context/playlist-context';
 import { useContext } from 'react';
 
 export const usePlayer = () => {
-  const { setAudio, audio } = useContext(AudioContext);
+  const { setAudio, audio, playing } = useContext(AudioContext);
   const { setPlaylist, playlist } = useContext(PlaylistContext);
 
-  return { setAudio, audio, setPlaylist, playlist };
+  return { setAudio, audio, setPlaylist, playlist, playing };
 };
