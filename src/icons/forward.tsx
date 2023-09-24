@@ -12,7 +12,7 @@ export const ForwardIcon = () => {
     >
       <g
         transform="translate(0.000000,2500.000000) scale(0.100000,-0.100000)"
-        fill="fill-black dark:fill-white"
+        className="fill-black dark:fill-white"
         stroke="none"
       >
         <path

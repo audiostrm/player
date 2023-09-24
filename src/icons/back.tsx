@@ -3,7 +3,7 @@ import React from 'react';
 export const BackIcon = () => {
   return (
     <svg
-      fill="fill-black dark:fill-white"
+      className="fill-black dark:fill-white"
       width="18"
       height="18"
       viewBox="0 0 32 32"
