@@ -15,7 +15,7 @@ export const LoopButton = () => {
 
   return (
     <div
-      className="flex items-center justify-center rounded-full hover:bg-slate-800 w-6 h-6"
+      className="flex items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 w-6 h-6"
       onClick={toggleLoop}
     >
       {loopStatus === 'single' && (

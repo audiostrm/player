@@ -18,7 +18,7 @@ export const PlayerButton = ({ className }: { className?: string }) => {
   return (
     <button
       className={cn(
-        'bg-white rounded-full w-10 flex items-center justify-center h-10',
+        'bg-black dark:bg-white rounded-full w-10 flex items-center justify-center h-10',
         className
       )}
       disabled={!audio.url}

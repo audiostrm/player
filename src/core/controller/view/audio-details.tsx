@@ -14,7 +14,7 @@ export const AudioDetails = () => {
   return (
     <div className="flex justify-between">
       <div className="flex flex-col">
-        <span className="text-xs flex-shrink-0 max-w-[180px] truncate ... w-full">
+        <span className="text-xs flex-shrink-0 text-black dark:text-white max-w-[180px] truncate ... w-full">
           {audio.title}
         </span>
         <span

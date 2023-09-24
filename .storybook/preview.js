@@ -1,6 +1,7 @@
 import { PlayerProvider } from '../src/provider';
 import 'tailwindcss/tailwind.css';
 
+/** @type {import('@storybook/react').Preview} */
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   layout: 'fullscreen',
@@ -10,24 +11,24 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  globalTypes: {
+    darkMode: {
+      defaultValue: true, // Enable dark mode by default on all stories
+    },
+    className: {
+      defaultValue: 'dark',
+    },
+  },
   backgrounds: {
-    default: 'black',
+    default: 'dark',
     values: [
       {
-        name: 'gray',
-        value: '#F3F5FB',
-      },
-      {
-        name: 'white',
+        name: 'light',
         value: '#FFFFFF',
       },
       {
-        name: 'black',
+        name: 'dark',
         value: '#000000',
-      },
-      {
-        name: 'blue',
-        value: '#2E48A0',
       },
     ],
   },

@@ -107,7 +107,7 @@ export const Tracker = ({ className }: TrackerProps) => {
         ref={trackerRef}
         aria-label={tracker}
       >
-        <div className="h-1 rounded-md w-full bg-slate-800 relative">
+        <div className="h-1 rounded-md w-full bg-slate-300 dark:bg-slate-800 relative">
           <Indicator width={trackerTime} />
         </div>
       </div>

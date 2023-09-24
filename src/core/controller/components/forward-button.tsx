@@ -7,7 +7,7 @@ export const ForwardButton = () => {
 
   return (
     <div
-      className="rounded-full hover:bg-slate-800 w-8 h-8 pl-0.5 flex-none flex items-center justify-center"
+      className="rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 w-8 h-8 pl-0.5 flex-none flex items-center justify-center"
       onClick={forwardAudio}
     >
       <ForwardIcon />

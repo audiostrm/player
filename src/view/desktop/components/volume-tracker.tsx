@@ -63,12 +63,12 @@ export const VolumeTracker = () => {
 
   return (
     <div
-      className="bg-slate-800 h-1 w-full rounded-full relative group"
+      className="bg-slate-200 dark:bg-slate-800 h-1 w-full rounded-full relative group"
       ref={volumeRef}
       aria-label={volume}
     >
       <div
-        className="group-hover:bg-blue-500 group-hover:block z-10 before:-translate-y-1/2 group-hover:before:block! h-full rounded-full bg-white group-hover:before:bg-white before:content-[''] before:absolute before:w-2 before:h-2 relative before:rounded-full before:right-0 before:top-1/2 before:translate-x-1"
+        className="group-hover:bg-blue-500 group-hover:before:shadow-sm group-hover:before:shadow-slate-500 group-hover:block z-10 before:-translate-y-1/2 group-hover:before:block h-full rounded-full bg-blue-500 dark:bg-white group-hover:before:bg-white before:content-[''] before:absolute before:w-2 before:h-2 relative before:rounded-full before:right-0 before:top-1/2 before:translate-x-1"
         style={{ width: volume }}
       />
     </div>

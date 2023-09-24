@@ -5,18 +5,21 @@ import { Tracker } from '@/core/tracker';
 import { useAudio } from '@/provider/audio/hooks/useAudio';
 
 export const MobileCanvas = () => {
-  const { audio } = useAudio();
+  const { audio, onUsernameNavigate } = useAudio();
 
   return (
     <div className="w-full bg-black">
       <Tracker className="relative" />
-      <div className="flex pt-3 pl-2 items-center">
+      <div className="flex py-3 pl-2 items-center">
         <Image />
         <div className="ml-3 flex flex-col justify-center">
           <div className="text-xs text-white truncate ... max-w-[180px] w-full">
             {audio.title}
           </div>
-          <div className="text-xs text-slate truncate ... max-w-[180px] w-full">
+          <div
+            className="text-xs text-slate hover:underline cursor-pointer text-slate-500 truncate ... max-w-[180px] w-full"
+            onClick={() => onUsernameNavigate(audio.uploader?.name as string)}
+          >
             {audio.uploader?.name}
           </div>
         </div>

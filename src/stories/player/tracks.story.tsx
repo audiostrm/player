@@ -44,7 +44,7 @@ const Tracks = () => {
 const Wrapper = () => {
   return (
     <PlayerProvider onUsernameNavigate={() => {}} onAudioNavigate={() => {}}>
-      <div className="fixed bottom-3 w-full">
+      <div className="fixed bottom-0 md:bottom-3 w-full">
         <Tracks />
       </div>
     </PlayerProvider>

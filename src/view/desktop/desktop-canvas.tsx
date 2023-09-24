@@ -16,7 +16,7 @@ export const DesktopCanvas = () => {
   return (
     <div
       className={cn(
-        'max-w-[900px] w-full border-slate-700 h-16 justify-between rounded-full flex items-center p-2 z-10 border text-white bg-black/90 backdrop-blur-xl transition-all',
+        'max-w-[900px] w-full border-slate-200 dark:border-slate-700 h-16 justify-between rounded-full flex items-center p-2 z-10 border text-white bg-white dark:bg-black backdrop-blur-xl transition-all',
         !audio.id && 'hidden'
       )}
     >
