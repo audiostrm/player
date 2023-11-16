@@ -7,7 +7,7 @@ export const Image = () => {
   const { onAudioNavigate } = useContext(AudioContext);
 
   const RenderImage = useMemo(() => {
-    if (!audio.id) return <>haha</>;
+    if (!audio.id) return <></>;
 
     if (audio.nextImage !== undefined) {
       return audio.nextImage;
