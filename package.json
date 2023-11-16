@@ -1,7 +1,7 @@
 {
   "name": "@audiostreamhq/player",
   "description": "buffer streaming supported audio player 🔊",
-  "version": "0.1.35",
+  "version": "0.1.36",
   "author": "callmenikk",
   "license": "MIT",
   "keywords": [],
@@ -25,15 +25,11 @@
     "deploy-storybook": "storybook-to-ghpages",
     "release": "bun run build && yarn release-it"
   },
-  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "require": "./dist/index.js",
       "import": "./dist/index.mjs"
-    },
-    "./dist/index.css": {
-      "import": "./dist/index.css",
-      "require": "./dist/index.css"
     }
   },
   "files": [
